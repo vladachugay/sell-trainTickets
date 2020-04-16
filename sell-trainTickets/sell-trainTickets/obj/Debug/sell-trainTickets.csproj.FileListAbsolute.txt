@@ -7,3 +7,4 @@ C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTi
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.exe
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.pdb
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.AuthorizationForm.resources
+C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.MainForm.resources

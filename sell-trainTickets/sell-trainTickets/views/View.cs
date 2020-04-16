@@ -17,15 +17,16 @@ namespace sellTrainTickets.Views
             Application.Run(new AuthorizationForm());
         }
 
-        public MainForm Form2 { get; private set; }
-        public void createForm2(Form form1)
+        public MainForm MainForm { get; private set; }
+        public void createForm2(string log, string pass, Form form1)
         {
             form1.Hide();
-            Form2 = new MainForm();
-            Form2.StartPosition = FormStartPosition.CenterScreen;
-            Form2.ShowDialog();
-
-
+            MainForm = new MainForm();
+            MainForm.LabelText1 = log;
+            MainForm.LabelText2 = pass;
+            MainForm.StartPosition = FormStartPosition.CenterScreen;
+            MainForm.ShowDialog();
+           
         }
     }
 }

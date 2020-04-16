@@ -16,6 +16,30 @@ namespace sellTrainTickets.Views
         {
             InitializeComponent();
         }
+
+        public string LabelText1
+        {
+            get
+            {
+                return this.label1.Text;
+            }
+            set
+            {
+                this.label1.Text = value;
+            }
+        }
+
+        public string LabelText2
+        {
+            get
+            {
+                return this.label2.Text;
+            }
+            set
+            {
+                this.label2.Text = value;
+            }
+        }
     }
 }
 

@@ -20,7 +20,7 @@ namespace sellTrainTickets.Controllers
         {
             if (true)
             {
-                view.createForm2(form);
+                view.createForm2(log, pass, form);
             }
         }
     }
