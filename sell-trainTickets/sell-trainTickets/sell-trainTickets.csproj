@@ -53,6 +53,12 @@
     <Compile Include="views\AddAdminForm.Designer.cs">
       <DependentUpon>AddAdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\AddRaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\AddRaceForm.Designer.cs">
+      <DependentUpon>AddRaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\AuthorizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
