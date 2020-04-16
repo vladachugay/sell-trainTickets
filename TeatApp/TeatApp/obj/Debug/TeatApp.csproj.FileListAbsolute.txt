@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\bin\Debug\TeatApp.exe.config
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\bin\Debug\TeatApp.exe
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\bin\Debug\TeatApp.pdb
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.csprojAssemblyReference.cache
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.Properties.Resources.resources
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.csproj.GenerateResource.cache
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.exe
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.pdb
+C:\Users\user\Desktop\КПІ\4 семестр\трпз1\лаби\TeatApp\TeatApp\obj\Debug\TeatApp.AuthorizationForm.resources
