@@ -8,3 +8,13 @@ C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTi
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.pdb
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.AuthorizationForm.resources
 C:\Users\user\Desktop\КПІ\4семестр\трпз1\проект\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.MainForm.resources
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\sell-trainTickets.exe.config
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\sell-trainTickets.exe
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\sell-trainTickets.pdb
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.csprojAssemblyReference.cache
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell_trainTickets.Properties.Resources.resources
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.AuthorizationForm.resources
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.MainForm.resources
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.csproj.GenerateResource.cache
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.exe
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.pdb
