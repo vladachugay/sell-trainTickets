@@ -4,19 +4,23 @@ using System.IO;
 
 namespace sellTrainTickets.Models
 {
-	public class DBSource
+	public static class DBSource
 	{
-		public DBSource()
+		private static NpgsqlConnection conn;
+		private static string path = "C:\\Users\\user\\Desktop\\KPI\\4sem\\trpz\\project" +
+			"\\sell-trainTickets\\sell-trainTickets\\sell-trainTickets\\config.txt";
+
+		public static void openConnection()
 		{
-			string path = "C:\\Users\\user\\Desktop\\KPI\\4sem\\trpz\\project\\sell-trainTickets\\sell-trainTickets\\sell-trainTickets\\config.txt";
 			string pass = File.ReadAllText(path);
-			var cs = $"Host=localhost;Username=postgres;Password={pass};Database=testdb";
+			string cs = $"Server=127.0.0.1; Port=5432; User Id=postgres; Password={pass}; Database=postgres";
+			conn = new NpgsqlConnection(cs);
+			conn.Open();
+		}
 
-			using var con = new NpgsqlConnection(cs);
-			con.Open();
-
-			using var cmd = new NpgsqlCommand();
-			cmd.Connection = con;
+		public static void closeConnection()
+		{
+			conn.Close();
 		}
 	}
 }

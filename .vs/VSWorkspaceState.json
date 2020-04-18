@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\sell-trainTickets"
+    "\\sell-trainTickets",
+    "\\sell-trainTickets\\sell-trainTickets\\models"
   ],
   "SelectedNode": "\\sell-trainTickets\\sell-trainTickets.sln",
   "PreviewInSolutionExplorer": false
