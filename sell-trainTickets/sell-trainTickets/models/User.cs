@@ -4,10 +4,9 @@ namespace sellTrainTickets.Models
 {
 	public class User
 	{
-		private int id;
+		private string fullName;
 		private string email;
 		private string password;
-		private string fullName;
 		private bool isAdmin;
 		private bool isSuperAdmin;
 
@@ -15,20 +14,28 @@ namespace sellTrainTickets.Models
 		{
 		}
 
-		public User(int id, string email, string password, string fullName, bool isAdmin, bool isSuperAdmin)
+		public User(string fullName, string email, string password)
 		{
-			this.id = id;
+			this.fullName = fullName;
 			this.email = email;
 			this.password = password;
+			this.isAdmin = false;
+			this.isSuperAdmin = false;
+		}
+
+		public User(string fullName, string email, string password, bool isAdmin, bool isSuperAdmin)
+		{
 			this.fullName = fullName;
+			this.email = email;
+			this.password = password;
 			this.isAdmin = isAdmin;
 			this.isSuperAdmin = isSuperAdmin;
 		}
 
-		public int Id
+		public string FullName
 		{
-			get { return id; }
-			set { id = value; }
+			get { return fullName; }
+			set { fullName = value; }
 		}
 
 		public string Email
@@ -43,12 +50,7 @@ namespace sellTrainTickets.Models
 			set { password = value; }
 		}
 
-		public string FullName
-		{
-			get { return fullName; }
-			set { fullName = value; }
-		}
-
+		
 		public bool IsAdmin
 		{
 			get { return isAdmin; }

@@ -22,6 +22,11 @@ namespace sellTrainTickets.Models
 		{
 			conn.Close();
 		}
+
+		public static NpgsqlConnection getConnection()
+		{
+			return conn;
+		}
 	}
 }
 

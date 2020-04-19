@@ -206,6 +206,7 @@
             this.GoToRegistrationButton.Size = new System.Drawing.Size(218, 46);
             this.GoToRegistrationButton.TabIndex = 9;
             this.GoToRegistrationButton.Text = "Немає облікового запису?\r\n            Реєстарція";
+            this.GoToRegistrationButton.Click += new System.EventHandler(this.GoToRegistrationButton_Click);
             this.GoToRegistrationButton.MouseEnter += new System.EventHandler(this.label2_MouseEnter);
             this.GoToRegistrationButton.MouseLeave += new System.EventHandler(this.label2_MouseLeave);
             // 

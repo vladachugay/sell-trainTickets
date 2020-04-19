@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace sell_trainTickets.views
+namespace sellTrainTickets.Views
 {
     public partial class AddAdminForm : Form
     {

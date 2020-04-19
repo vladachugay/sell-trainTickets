@@ -19,7 +19,7 @@ namespace sellTrainTickets.Models
 		}
 
 		public Ticket(int id, int raceId, DateTime date, string departureCity, string arrivalCity,
-			DateTime departuteTime, DateTime arrivalTime, string fullName, int price)
+			DateTime departureTime, DateTime arrivalTime, string fullName, int price)
 		{
 			this.id = id;
 			this.raceId = raceId;

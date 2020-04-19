@@ -18,3 +18,9 @@ C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.csproj.GenerateResource.cache
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.exe
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.pdb
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\Npgsql.dll
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\Npgsql.pdb
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\bin\Debug\Npgsql.xml
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sell-trainTickets.csproj.CopyComplete
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.AddAdminForm.resources

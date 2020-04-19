@@ -37,8 +37,10 @@ namespace sellTrainTickets.Views
 
         }
 
+        [Obsolete]
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            Controller.closeApplication();
             this.Close();
         }
 
@@ -75,7 +77,15 @@ namespace sellTrainTickets.Views
         private void EnterButton_Click(object sender, EventArgs e)
         {
             Controller.login(LoginField.Text, PassField.Text, this);
-           
+        }
+
+        public RegistrationForm RegistrationForm { get; private set; }
+        private void GoToRegistrationButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RegistrationForm = new RegistrationForm();
+            RegistrationForm.StartPosition = FormStartPosition.CenterScreen;
+            RegistrationForm.ShowDialog();
         }
     }
 }

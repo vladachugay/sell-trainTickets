@@ -33,17 +33,12 @@ namespace sellTrainTickets.Models
 			set { id = value; }
 		}
 
-		public string name
+		public string Name
 		{
 			get { return name; }
 			set { name = value; }
 		}
 
-		public string name
-		{
-			get { return name; }
-			set { name = value; }
-		}
 
 		public List<string> Stations
 		{

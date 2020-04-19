@@ -4,23 +4,23 @@ namespace sellTrainTickets.Models
 {
 	public class Session
 	{
-		private int userId;
+		private string userEmail;
 		private string ip;
 
 		public Session()
 		{
 		}
 
-		public Session(int userId, string ip)
+		public Session(string userEmail, string ip)
 		{
-			this.userId = userId;
+			this.userEmail = userEmail;
 			this.ip = ip;
 		}
 
-		public int UserId
+		public string UserEmail
 		{
-			get { return userId; }
-			set { userId = value; }
+			get { return userEmail; }
+			set { userEmail = value; }
 		}
 
 		public string Ip

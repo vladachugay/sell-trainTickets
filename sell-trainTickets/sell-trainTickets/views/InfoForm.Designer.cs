@@ -1,4 +1,4 @@
-﻿namespace sell_trainTickets.views
+﻿namespace sellTrainTickets.Views
 {
     partial class InfoForm
     {
