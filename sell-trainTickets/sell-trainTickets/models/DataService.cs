@@ -73,6 +73,11 @@ namespace sellTrainTickets.Models
 		{
 
 		}
+
+		public List<RaceInfo> findRaces(string departureCity, string arrivalCity, string date)
+		{
+
+		}
 	}
 }
 

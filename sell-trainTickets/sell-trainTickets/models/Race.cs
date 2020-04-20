@@ -17,6 +17,14 @@ namespace sellTrainTickets.Models
 		{
 		}
 
+		public Race(string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats)
+		{
+			this.name = name;
+			this.stations = stations;
+			this.arrivalTime = arrivalTime;
+			this.departureTime = departureTime;
+			this.numOfSeats = numOfSeats;
+		}
 		public Race(int id, string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats)
 		{
 			this.id = id;
