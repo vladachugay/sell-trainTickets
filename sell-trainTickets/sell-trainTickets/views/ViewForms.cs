@@ -185,5 +185,10 @@ namespace sellTrainTickets.Views
             DeleteAdminForm.ShowDialog();
 
         }
+
+        public void deleteTicket(Form InfoForm)
+        {
+
+        }
     }
 }

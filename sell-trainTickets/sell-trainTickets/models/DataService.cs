@@ -1,6 +1,7 @@
 ﻿using System;
 using Npgsql;
 using System.Collections.Generic;
+using System.Collections;
 
 
 namespace sellTrainTickets.Models
@@ -64,7 +65,7 @@ namespace sellTrainTickets.Models
 
 		}
 
-		public void returnTicket(Ticket ticket)
+		public void returnTicket(int id)
 		{
 
 		}
@@ -74,9 +75,29 @@ namespace sellTrainTickets.Models
 
 		}
 
-		public List<RaceInfo> findRaces(string departureCity, string arrivalCity, string date)
+		public ArrayList findRaces(string departureCity, string arrivalCity, string date)
 		{
+			return new ArrayList();
+		}
+		
+		public Ticket createTicket(int raceId, string date, string deprtureCity, string arrivalCity, string fullName)
+		{
+			return new Ticket();
+		}
 
+		public List<Ticket> getUsersTickets(string email)
+		{
+			return new List<Ticket>();
+		}
+
+		private string getUsersEmail(string IP)
+		{
+			return "email";
+		}
+
+		public User getUser(string IP)
+		{
+			return new User();
 		}
 	}
 }
