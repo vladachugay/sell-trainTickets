@@ -18,8 +18,7 @@ namespace sellTrainTickets.Views
         {
             InitializeComponent();
             this.LoginField.AutoSize = false;
-            this.PassField.Size = new Size(this.PassField.Size.Width, 50);
-            
+            this.PassField.Size = new Size(this.PassField.Size.Width, 50); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -79,13 +78,12 @@ namespace sellTrainTickets.Views
             Controller.login(LoginField.Text, PassField.Text, this);
         }
 
-        public RegistrationForm RegistrationForm { get; private set; }
         private void GoToRegistrationButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RegistrationForm = new RegistrationForm();
-            RegistrationForm.StartPosition = FormStartPosition.CenterScreen;
-            RegistrationForm.ShowDialog();
+            RegistrationForm registrationForm = new RegistrationForm();
+            registrationForm.StartPosition = FormStartPosition.CenterScreen;
+            registrationForm.ShowDialog();
         }
     }
 }

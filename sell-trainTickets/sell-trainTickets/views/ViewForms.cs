@@ -30,30 +30,29 @@ namespace sellTrainTickets.Views
             //
         }
 
-        public MainForm MainForm { get; private set; }
         public void toMainForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
-            MainForm = new MainForm();
+            MainForm mainForm = new MainForm();
             if(!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(MainForm);
+                hideOptionsForUser(mainForm);
             }
             else if(isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(MainForm);
+                hideOptionsForAdmin(mainForm);
             }
-            MainForm.StartPosition = FormStartPosition.CenterScreen;
-            MainForm.ShowDialog();
+            mainForm.StartPosition = FormStartPosition.CenterScreen;
+            mainForm.ShowDialog();
             
         }
 
         public void fromRegistrationToMainForm(Form RegistrationForm)
         {
             RegistrationForm.Hide();
-            MainForm = new MainForm();
-            MainForm.StartPosition = FormStartPosition.CenterScreen;
-            MainForm.ShowDialog();
+            MainForm mainForm = new MainForm();
+            mainForm.StartPosition = FormStartPosition.CenterScreen;
+            mainForm.ShowDialog();
         }
 
         public AvailableRacesForm AvailableRacesForm { get; private set; }
@@ -78,10 +77,11 @@ namespace sellTrainTickets.Views
             AvailableRacesForm.ShowDialog();
         }
 
-        public PayForm PayForm { get; private set; }
+        //public PayForm PayForm { get; private set; }
         public void toPayForm(Form form, bool isAdmin, bool isSuperAdmin, Ticket ticket)
         {
             form.Hide();
+            PayForm payForm = new PayForm();
             AvailableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
@@ -96,93 +96,88 @@ namespace sellTrainTickets.Views
             AvailableRacesForm.ShowDialog();
         }
 
-        public InfoForm InfoForm { get; private set; }
         public void toInfoForm(Form form, bool isAdmin, bool isSuperAdmin, List<Ticket> tickets, User user)
         {
             form.Hide();
-            InfoForm = new InfoForm();
+            InfoForm infoForm = new InfoForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(InfoForm);
+                hideOptionsForUser(infoForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(InfoForm);
+                hideOptionsForAdmin(infoForm);
             }
             //вивсти інфрмацію про користувача та його квитки
-            InfoForm.StartPosition = FormStartPosition.CenterScreen;
-            InfoForm.ShowDialog();
+            infoForm.StartPosition = FormStartPosition.CenterScreen;
+            infoForm.ShowDialog();
         }
 
-        public AddRaceForm AddRaceForm { get; private set; }
         public void toAddRaceForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
-            AddRaceForm = new AddRaceForm();
+            AddRaceForm addRaceForm = new AddRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser (AddRaceForm);
+                hideOptionsForUser (addRaceForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(AddRaceForm);
+                hideOptionsForAdmin(addRaceForm);
             }
-            AddRaceForm.StartPosition = FormStartPosition.CenterScreen;
-            AddRaceForm.ShowDialog();
+            addRaceForm.StartPosition = FormStartPosition.CenterScreen;
+            addRaceForm.ShowDialog();
 
         }
 
-        public DeleteRaceForm DeleteRaceForm { get; private set; }
         public void toDeleteRaceForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
-            DeleteRaceForm = new DeleteRaceForm();
+            DeleteRaceForm deleteRaceForm = new DeleteRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(DeleteRaceForm);
+                hideOptionsForUser(deleteRaceForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(DeleteRaceForm);
+                hideOptionsForAdmin(deleteRaceForm);
             }
-            DeleteRaceForm.StartPosition = FormStartPosition.CenterScreen;
-            DeleteRaceForm.ShowDialog();
+            deleteRaceForm.StartPosition = FormStartPosition.CenterScreen;
+            deleteRaceForm.ShowDialog();
 
         }
 
-        public AddAdminForm AddAdminForm { get; private set; }
         public void toAddAdminForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
-            AddAdminForm = new AddAdminForm();
+            AddAdminForm addAdminForm = new AddAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(AddAdminForm);
+                hideOptionsForUser(addAdminForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(AddAdminForm);
+                hideOptionsForAdmin(addAdminForm);
             }
-            AddAdminForm.StartPosition = FormStartPosition.CenterScreen;
-            AddAdminForm.ShowDialog();
+            addAdminForm.StartPosition = FormStartPosition.CenterScreen;
+            addAdminForm.ShowDialog();
 
         }
 
-        public DeleteAdminForm DeleteAdminForm { get; private set; }
         public void toDeleteAdminForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
-            DeleteAdminForm = new DeleteAdminForm();
+            DeleteAdminForm deleteAdminForm = new DeleteAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(DeleteAdminForm);
+                hideOptionsForUser(deleteAdminForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(DeleteAdminForm);
+                hideOptionsForAdmin(deleteAdminForm);
             }
-            DeleteAdminForm.StartPosition = FormStartPosition.CenterScreen;
-            DeleteAdminForm.ShowDialog();
+            deleteAdminForm.StartPosition = FormStartPosition.CenterScreen;
+            deleteAdminForm.ShowDialog();
 
         }
 

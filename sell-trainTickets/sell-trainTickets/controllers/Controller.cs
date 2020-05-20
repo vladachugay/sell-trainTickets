@@ -47,8 +47,9 @@ namespace sellTrainTickets.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine(e.Message);
             }  
+
         }
 
         [Obsolete]

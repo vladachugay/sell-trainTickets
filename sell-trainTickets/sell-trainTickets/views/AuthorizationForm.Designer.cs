@@ -77,7 +77,7 @@
             this.WelcomLabel3.BackColor = System.Drawing.Color.Transparent;
             this.WelcomLabel3.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold);
             this.WelcomLabel3.ForeColor = System.Drawing.Color.Lavender;
-            this.WelcomLabel3.Location = new System.Drawing.Point(60, 532);
+            this.WelcomLabel3.Location = new System.Drawing.Point(51, 532);
             this.WelcomLabel3.Name = "WelcomLabel3";
             this.WelcomLabel3.Size = new System.Drawing.Size(291, 46);
             this.WelcomLabel3.TabIndex = 2;
