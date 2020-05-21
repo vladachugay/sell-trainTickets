@@ -133,8 +133,23 @@
     <EmbeddedResource Include="views\AddAdminForm.resx">
       <DependentUpon>AddAdminForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\AddRaceForm.resx">
+      <DependentUpon>AddRaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\AvailableRacesForm.resx">
+      <DependentUpon>AvailableRacesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\DeleteAdminForm.resx">
+      <DependentUpon>DeleteAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\DeleteRaceForm.resx">
+      <DependentUpon>DeleteRaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

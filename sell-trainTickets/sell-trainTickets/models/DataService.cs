@@ -55,7 +55,7 @@ namespace sellTrainTickets.Models
 
 		}
 
-		public void addRace(string stations, string arrivalTime, string departureTime, int numOfSeats)
+		public void addRace(int id, string stations, string arrivalTime, string departureTime, int numOfSeats)
 		{
 
 		}
@@ -75,7 +75,7 @@ namespace sellTrainTickets.Models
 
 		}
 
-		public ArrayList findRaces(string departureCity, string arrivalCity, string date)
+		public ArrayList findRaces(string departureCity, string arrivalCity, DateTime date)
 		{
 			return new ArrayList();
 		}

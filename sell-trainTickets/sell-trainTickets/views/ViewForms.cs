@@ -55,26 +55,25 @@ namespace sellTrainTickets.Views
             mainForm.ShowDialog();
         }
 
-        public AvailableRacesForm AvailableRacesForm { get; private set; }
 
         public void toAvailableRacesForm(Form form, bool isAdmin, bool isSuperAdmin, ArrayList availableRaces)
         {
             form.Hide();
-            AvailableRacesForm = new AvailableRacesForm();
+            AvailableRacesForm availableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(AvailableRacesForm);
+                hideOptionsForUser(availableRacesForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(AvailableRacesForm);
+                hideOptionsForAdmin(availableRacesForm);
             }
             foreach (var availableRace in availableRaces)
             {
                 //
             }
-            AvailableRacesForm.StartPosition = FormStartPosition.CenterScreen;
-            AvailableRacesForm.ShowDialog();
+            availableRacesForm.StartPosition = FormStartPosition.CenterScreen;
+            availableRacesForm.ShowDialog();
         }
 
         //public PayForm PayForm { get; private set; }
@@ -82,18 +81,18 @@ namespace sellTrainTickets.Views
         {
             form.Hide();
             PayForm payForm = new PayForm();
-            AvailableRacesForm = new AvailableRacesForm();
+            //AvailableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(AvailableRacesForm);
+                hideOptionsForUser(payForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(AvailableRacesForm);
+                hideOptionsForAdmin(payForm);
             }
             //вивести квиток
-            AvailableRacesForm.StartPosition = FormStartPosition.CenterScreen;
-            AvailableRacesForm.ShowDialog();
+            payForm.StartPosition = FormStartPosition.CenterScreen;
+            payForm.ShowDialog();
         }
 
         public void toInfoForm(Form form, bool isAdmin, bool isSuperAdmin, List<Ticket> tickets, User user)

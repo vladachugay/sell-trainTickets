@@ -96,7 +96,7 @@ namespace sellTrainTickets.Controllers
         }
 
         [Obsolete]
-        public static void clickOnAvailableRacesButton(string departureCity, string arrivalCity, string date, Form MainForm)
+        public static void clickOnAvailableRacesButton(string departureCity, string arrivalCity, DateTime date, Form MainForm)
         {
             try
             {
@@ -182,11 +182,12 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnAddRaceButton(string stations, string arrivalTime, string departureTime, int numOfSeats)
+        public static void clickOnAddRaceButton(Form form, int id, string stations, string arrivalTime, string departureTime, int numOfSeats)
         {
             try
             {
-                dataService.addRace(stations, arrivalTime, departureTime, numOfSeats);
+                dataService.addRace(id, stations, arrivalTime, departureTime, numOfSeats);
+                view.toMainForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
             }
             catch (Exception e)
             {
