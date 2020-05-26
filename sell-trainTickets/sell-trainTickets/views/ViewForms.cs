@@ -19,32 +19,25 @@ namespace sellTrainTickets.Views
             Application.Run(new AuthorizationForm());
         }
 
-        private void hideOptionsForAdmin(Form form)
-        {
-            //
-        }
-
-        private void hideOptionsForUser(Form form)
-        {
-            hideOptionsForAdmin(form);
-            //
-        }
-
         public void toMainForm(Form form, bool isAdmin, bool isSuperAdmin)
         {
             form.Hide();
             MainForm mainForm = new MainForm();
             if(!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(mainForm);
+                mainForm.addRaceButton.Visible = false;
+                mainForm.deleteRaceButton.Visible = false;
+                mainForm.addAdministratorButton.Visible = false;
+                mainForm.deleteAdminButton.Visible = false;
             }
             else if(isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(mainForm);
+                mainForm.addAdministratorButton.Visible = false;
+                mainForm.deleteAdminButton.Visible = false;
             }
             mainForm.StartPosition = FormStartPosition.CenterScreen;
             mainForm.ShowDialog();
-            
+            form.Close();
         }
 
         public void fromRegistrationToMainForm(Form RegistrationForm)
@@ -53,6 +46,7 @@ namespace sellTrainTickets.Views
             MainForm mainForm = new MainForm();
             mainForm.StartPosition = FormStartPosition.CenterScreen;
             mainForm.ShowDialog();
+            RegistrationForm.Close();
         }
 
 
@@ -62,11 +56,11 @@ namespace sellTrainTickets.Views
             AvailableRacesForm availableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(availableRacesForm);
+                //hideOptionsForUser(availableRacesForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(availableRacesForm);
+                //hideOptionsForAdmin(availableRacesForm);
             }
             foreach (var availableRace in availableRaces)
             {
@@ -74,6 +68,7 @@ namespace sellTrainTickets.Views
             }
             availableRacesForm.StartPosition = FormStartPosition.CenterScreen;
             availableRacesForm.ShowDialog();
+            form.Close();
         }
 
         //public PayForm PayForm { get; private set; }
@@ -84,15 +79,16 @@ namespace sellTrainTickets.Views
             //AvailableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(payForm);
+                //hideOptionsForUser(payForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(payForm);
+                //hideOptionsForAdmin(payForm);
             }
             //вивести квиток
             payForm.StartPosition = FormStartPosition.CenterScreen;
             payForm.ShowDialog();
+            form.Close();
         }
 
         public void toInfoForm(Form form, bool isAdmin, bool isSuperAdmin, List<Ticket> tickets, User user)
@@ -101,15 +97,19 @@ namespace sellTrainTickets.Views
             InfoForm infoForm = new InfoForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(infoForm);
+                //hideOptionsForUser(infoForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(infoForm);
+                //hideOptionsForAdmin(infoForm);
             }
+            infoForm.surnameTextBox.Text = user.FullName.Split(' ')[0];
+            infoForm.nameTextBox.Text = user.FullName.Split(' ')[1];
+            infoForm.emailTextBox.Text = user.Email;
             //вивсти інфрмацію про користувача та його квитки
             infoForm.StartPosition = FormStartPosition.CenterScreen;
             infoForm.ShowDialog();
+            form.Close();
         }
 
         public void toAddRaceForm(Form form, bool isAdmin, bool isSuperAdmin)
@@ -118,15 +118,15 @@ namespace sellTrainTickets.Views
             AddRaceForm addRaceForm = new AddRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser (addRaceForm);
+                //hideOptionsForUser (addRaceForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(addRaceForm);
+                //hideOptionsForAdmin(addRaceForm);
             }
             addRaceForm.StartPosition = FormStartPosition.CenterScreen;
             addRaceForm.ShowDialog();
-
+            form.Close();
         }
 
         public void toDeleteRaceForm(Form form, bool isAdmin, bool isSuperAdmin)
@@ -135,15 +135,15 @@ namespace sellTrainTickets.Views
             DeleteRaceForm deleteRaceForm = new DeleteRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(deleteRaceForm);
+                //hideOptionsForUser(deleteRaceForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(deleteRaceForm);
+                //hideOptionsForAdmin(deleteRaceForm);
             }
             deleteRaceForm.StartPosition = FormStartPosition.CenterScreen;
             deleteRaceForm.ShowDialog();
-
+            form.Close();
         }
 
         public void toAddAdminForm(Form form, bool isAdmin, bool isSuperAdmin)
@@ -152,15 +152,15 @@ namespace sellTrainTickets.Views
             AddAdminForm addAdminForm = new AddAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(addAdminForm);
+                //hideOptionsForUser(addAdminForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(addAdminForm);
+                //hideOptionsForAdmin(addAdminForm);
             }
             addAdminForm.StartPosition = FormStartPosition.CenterScreen;
             addAdminForm.ShowDialog();
-
+            form.Close();
         }
 
         public void toDeleteAdminForm(Form form, bool isAdmin, bool isSuperAdmin)
@@ -169,20 +169,25 @@ namespace sellTrainTickets.Views
             DeleteAdminForm deleteAdminForm = new DeleteAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                hideOptionsForUser(deleteAdminForm);
+                //hideOptionsForUser(deleteAdminForm);
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                hideOptionsForAdmin(deleteAdminForm);
+                //hideOptionsForAdmin(deleteAdminForm);
             }
             deleteAdminForm.StartPosition = FormStartPosition.CenterScreen;
             deleteAdminForm.ShowDialog();
-
+            form.Close();
         }
 
         public void deleteTicket(Form InfoForm)
         {
 
+        }
+
+        public void getAuthorizationError(AuthorizationForm authorizationForm)
+        {
+            authorizationForm.errorLabel.Visible = true;
         }
     }
 }

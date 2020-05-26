@@ -74,7 +74,7 @@ namespace sellTrainTickets.Views
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
-        {
+        { 
             Controller.login(LoginField.Text, PassField.Text, this);
         }
 
@@ -84,6 +84,7 @@ namespace sellTrainTickets.Views
             RegistrationForm registrationForm = new RegistrationForm();
             registrationForm.StartPosition = FormStartPosition.CenterScreen;
             registrationForm.ShowDialog();
+            this.Close();
         }
     }
 }

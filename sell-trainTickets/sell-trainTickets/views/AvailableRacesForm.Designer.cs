@@ -195,6 +195,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AvailableRacesForm";
             this.Text = "AvailableRacesForm";
+            this.Load += new System.EventHandler(this.AvailableRacesForm_Load);
             this.menuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).EndInit();
             this.ResumeLayout(false);

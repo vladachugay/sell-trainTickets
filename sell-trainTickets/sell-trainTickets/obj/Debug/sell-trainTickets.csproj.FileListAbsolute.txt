@@ -30,3 +30,4 @@ C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.AddRaceForm.resources
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.DeleteAdminForm.resources
 C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.DeleteRaceForm.resources
+C:\Users\user\Desktop\KPI\4sem\trpz\project\sell-trainTickets\sell-trainTickets\sell-trainTickets\obj\Debug\sellTrainTickets.Views.PayForm.resources

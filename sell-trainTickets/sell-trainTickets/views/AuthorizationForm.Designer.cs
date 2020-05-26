@@ -42,6 +42,7 @@
             this.PassField = new System.Windows.Forms.TextBox();
             this.EnterButton = new System.Windows.Forms.Button();
             this.GoToRegistrationButton = new System.Windows.Forms.Label();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,6 +148,7 @@
             // 
             // LoginField
             // 
+            this.LoginField.BackColor = System.Drawing.Color.GhostWhite;
             this.LoginField.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LoginField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.LoginField.Location = new System.Drawing.Point(490, 210);
@@ -169,6 +171,7 @@
             // 
             // PassField
             // 
+            this.PassField.BackColor = System.Drawing.Color.GhostWhite;
             this.PassField.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PassField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.PassField.Location = new System.Drawing.Point(490, 312);
@@ -185,7 +188,7 @@
             this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.EnterButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EnterButton.Location = new System.Drawing.Point(621, 406);
+            this.EnterButton.Location = new System.Drawing.Point(622, 414);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(130, 49);
             this.EnterButton.TabIndex = 8;
@@ -210,12 +213,25 @@
             this.GoToRegistrationButton.MouseEnter += new System.EventHandler(this.label2_MouseEnter);
             this.GoToRegistrationButton.MouseLeave += new System.EventHandler(this.label2_MouseLeave);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(70)))), ((int)(((byte)(156)))));
+            this.errorLabel.Location = new System.Drawing.Point(565, 379);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(236, 23);
+            this.errorLabel.TabIndex = 10;
+            this.errorLabel.Text = "Неправильний логін/пароль";
+            this.errorLabel.Visible = false;
+            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(968, 608);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.GoToRegistrationButton);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PassField);
@@ -251,6 +267,7 @@
         private System.Windows.Forms.Label WelcomeLabel3;
         private System.Windows.Forms.Label WelcomLabel3;
         private System.Windows.Forms.Label GoToRegistrationButton;
+        public System.Windows.Forms.Label errorLabel;
     }
 }
 

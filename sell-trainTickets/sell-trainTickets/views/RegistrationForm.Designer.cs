@@ -90,6 +90,7 @@
             // 
             // PassField
             // 
+            this.PassField.BackColor = System.Drawing.Color.GhostWhite;
             this.PassField.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PassField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.PassField.Location = new System.Drawing.Point(482, 329);
@@ -112,6 +113,7 @@
             // 
             // emailField
             // 
+            this.emailField.BackColor = System.Drawing.Color.GhostWhite;
             this.emailField.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.emailField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.emailField.Location = new System.Drawing.Point(482, 254);
@@ -184,6 +186,7 @@
             // 
             // repeatPassFieald
             // 
+            this.repeatPassFieald.BackColor = System.Drawing.Color.GhostWhite;
             this.repeatPassFieald.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.repeatPassFieald.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.repeatPassFieald.Location = new System.Drawing.Point(482, 399);
@@ -206,6 +209,7 @@
             // 
             // nameField
             // 
+            this.nameField.BackColor = System.Drawing.Color.GhostWhite;
             this.nameField.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.nameField.Location = new System.Drawing.Point(482, 183);
@@ -227,6 +231,7 @@
             // 
             // surnameField
             // 
+            this.surnameField.BackColor = System.Drawing.Color.GhostWhite;
             this.surnameField.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.surnameField.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.surnameField.Location = new System.Drawing.Point(482, 112);
@@ -250,6 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(968, 633);
             this.ControlBox = false;
             this.Controls.Add(this.surnameField);

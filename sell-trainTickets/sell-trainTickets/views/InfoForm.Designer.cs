@@ -300,8 +300,8 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox surnameTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox emailTextBox;
+        public System.Windows.Forms.TextBox surnameTextBox;
+        public System.Windows.Forms.TextBox nameTextBox;
+        public System.Windows.Forms.TextBox emailTextBox;
     }
 }

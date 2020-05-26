@@ -64,6 +64,9 @@ namespace sellTrainTickets.Views
             Controller.clickOnDeleteAdminOption(this);
         }
 
-        
+        private void AvailableRacesForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

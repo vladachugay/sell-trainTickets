@@ -15,7 +15,7 @@ namespace sellTrainTickets.Controllers
 
         public bool checkAuthorization(List<User> users)
         {
-            //if (users.Count() == 0) return false;
+            if (users.Count() == 0) return false;
             return true;
         }
     

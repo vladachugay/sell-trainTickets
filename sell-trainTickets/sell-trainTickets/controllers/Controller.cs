@@ -18,7 +18,7 @@ namespace sellTrainTickets.Controllers
         private static Validator validator = new Validator();
         public void run()
         {
-            //DBSource.openConnection();
+            DBSource.openConnection();
             view.show();
         }
 
@@ -31,18 +31,18 @@ namespace sellTrainTickets.Controllers
         }
 
         [Obsolete]
-        public static void login(string email, string pass, Form AuthorizationForm)
+        public static void login(string email, string pass, AuthorizationForm authorizationForm)
         {
             try
             {
                 if (validator.checkAuthorization(dataService.getUserWithLogPass(email, pass)))
                 {
                     dataService.addSession(email, getIP());
-                    view.toMainForm(AuthorizationForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                    view.toMainForm(authorizationForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
                 }
                 else
                 {
-                    //добавити текст про помилку в формі
+                    view.getAuthorizationError(authorizationForm);
                 }
             }
             catch (Exception e)
@@ -57,8 +57,8 @@ namespace sellTrainTickets.Controllers
         {
             try
             {
-                DBSource.closeConnection();
                 dataService.deleteSession(getIP());
+                DBSource.closeConnection();
             }
             catch (Exception e)
             {
