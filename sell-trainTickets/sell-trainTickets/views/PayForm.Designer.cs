@@ -369,10 +369,10 @@
         #endregion
 
         private System.Windows.Forms.Panel menuPanel;
-        private System.Windows.Forms.Button deleteAdminButton;
-        private System.Windows.Forms.Button addAdministratorButton;
-        private System.Windows.Forms.Button deleteRaceButton;
-        private System.Windows.Forms.Button addRaceButton;
+        public System.Windows.Forms.Button deleteAdminButton;
+        public System.Windows.Forms.Button addAdministratorButton;
+        public System.Windows.Forms.Button deleteRaceButton;
+        public System.Windows.Forms.Button addRaceButton;
         private System.Windows.Forms.Button infoButton;
         private System.Windows.Forms.Button searchRaceButton;
         private System.Windows.Forms.Label CloseButton;

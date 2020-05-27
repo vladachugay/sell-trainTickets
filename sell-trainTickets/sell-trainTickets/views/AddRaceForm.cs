@@ -16,6 +16,22 @@ namespace sellTrainTickets.Views
         public AddRaceForm()
         {
             InitializeComponent();
+            createTable();
+        }
+
+        private void createTable()
+        {
+            DataSet dataSet = new DataSet();
+            DataTable raceTable = new DataTable();
+            dataSet.Tables.Add(raceTable);
+
+            DataColumn station = new DataColumn("Зупинка");
+            DataColumn arrivalTime = new DataColumn("Час прибуття");
+            DataColumn departureTime = new DataColumn("Час відправлення");
+            raceTable.Columns.Add(station);
+            raceTable.Columns.Add(arrivalTime);
+            raceTable.Columns.Add(departureTime);
+            this.addRaceDataGrid.DataSource = raceTable;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -36,7 +52,32 @@ namespace sellTrainTickets.Views
 
         private void addRButton_Click(object sender, EventArgs e)
         {
-            Controller.clickOnAddRaceButton(this, Int32.Parse(IDTextBox.Text), stationsRichTextBox.Text, arrivalRichTextBox.Text, departureRichTextBox.Text, Int32.Parse(seatsTextBox.Text));
+            string stations = "";
+            string arrivalTime = "";
+            string departureTime = "";
+            Console.WriteLine(addRaceDataGrid.Rows.Count);
+            for (int i = 0; i < addRaceDataGrid.Rows.Count-1; i++)
+            {
+                if (i != addRaceDataGrid.Rows.Count - 2)
+                {
+                    stations += $"{addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString()};";
+                    arrivalTime += $"{addRaceDataGrid.Rows[i].Cells["Час прибуття"].Value.ToString()};";
+                    departureTime += $"{addRaceDataGrid.Rows[i].Cells["Час відправлення"].Value.ToString()};";
+                }
+                else
+                {
+                    stations += addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString();
+                    arrivalTime += addRaceDataGrid.Rows[i].Cells["Час прибуття"].Value.ToString();
+                    departureTime += addRaceDataGrid.Rows[i].Cells["Час відправлення"].Value.ToString();
+                }   
+            }
+            Console.WriteLine(stations);
+            Console.WriteLine(arrivalTime);
+            Console.WriteLine(departureTime);
+            string name = addRaceDataGrid.Rows[0].Cells["Зупинка"].Value.ToString() + " - " +
+                addRaceDataGrid.Rows[addRaceDataGrid.Rows.Count - 2].Cells["Зупинка"].Value.ToString();
+            Controller.clickOnAddRaceButton(this, Int32.Parse(IDTextBox.Text), name, stations, arrivalTime, departureTime, 
+                Int32.Parse(seatsTextBox.Text), Int32.Parse(priceTextBox.Text));
         }
 
         private void searchRaceButton_Click(object sender, EventArgs e)

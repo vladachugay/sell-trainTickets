@@ -56,12 +56,17 @@ namespace sellTrainTickets.Views
             AvailableRacesForm availableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(availableRacesForm);
+                availableRacesForm.addRaceButton.Visible = false;
+                availableRacesForm.deleteRaceButton.Visible = false;
+                availableRacesForm.addAdministratorButton.Visible = false;
+                availableRacesForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(availableRacesForm);
+                availableRacesForm.addAdministratorButton.Visible = false;
+                availableRacesForm.deleteAdminButton.Visible = false; ;
             }
+
             foreach (var availableRace in availableRaces)
             {
                 //
@@ -71,19 +76,21 @@ namespace sellTrainTickets.Views
             form.Close();
         }
 
-        //public PayForm PayForm { get; private set; }
         public void toPayForm(Form form, bool isAdmin, bool isSuperAdmin, Ticket ticket)
         {
             form.Hide();
             PayForm payForm = new PayForm();
-            //AvailableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(payForm);
+                payForm.addRaceButton.Visible = false;
+                payForm.deleteRaceButton.Visible = false;
+                payForm.addAdministratorButton.Visible = false;
+                payForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(payForm);
+                payForm.addAdministratorButton.Visible = false;
+                payForm.deleteAdminButton.Visible = false;
             }
             //вивести квиток
             payForm.StartPosition = FormStartPosition.CenterScreen;
@@ -97,16 +104,20 @@ namespace sellTrainTickets.Views
             InfoForm infoForm = new InfoForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(infoForm);
+                infoForm.addRaceButton.Visible = false;
+                infoForm.deleteRaceButton.Visible = false;
+                infoForm.addAdministratorButton.Visible = false;
+                infoForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(infoForm);
+                infoForm.addAdministratorButton.Visible = false;
+                infoForm.deleteAdminButton.Visible = false;
             }
             infoForm.surnameTextBox.Text = user.FullName.Split(' ')[0];
             infoForm.nameTextBox.Text = user.FullName.Split(' ')[1];
             infoForm.emailTextBox.Text = user.Email;
-            //вивсти інфрмацію про користувача та його квитки
+            //вивсти інфрмацію про користувача та його КВИТКИ!!!!!!
             infoForm.StartPosition = FormStartPosition.CenterScreen;
             infoForm.ShowDialog();
             form.Close();
@@ -118,11 +129,15 @@ namespace sellTrainTickets.Views
             AddRaceForm addRaceForm = new AddRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser (addRaceForm);
+                addRaceForm.addRaceButton.Visible = false;
+                addRaceForm.deleteRaceButton.Visible = false;
+                addRaceForm.addAdministratorButton.Visible = false;
+                addRaceForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(addRaceForm);
+                addRaceForm.addAdministratorButton.Visible = false;
+                addRaceForm.deleteAdminButton.Visible = false;
             }
             addRaceForm.StartPosition = FormStartPosition.CenterScreen;
             addRaceForm.ShowDialog();
@@ -135,11 +150,15 @@ namespace sellTrainTickets.Views
             DeleteRaceForm deleteRaceForm = new DeleteRaceForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(deleteRaceForm);
+                deleteRaceForm.addRaceButton.Visible = false;
+                deleteRaceForm.deleteRaceButton.Visible = false;
+                deleteRaceForm.addAdministratorButton.Visible = false;
+                deleteRaceForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(deleteRaceForm);
+                deleteRaceForm.addAdministratorButton.Visible = false;
+                deleteRaceForm.deleteAdminButton.Visible = false;
             }
             deleteRaceForm.StartPosition = FormStartPosition.CenterScreen;
             deleteRaceForm.ShowDialog();
@@ -152,11 +171,15 @@ namespace sellTrainTickets.Views
             AddAdminForm addAdminForm = new AddAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(addAdminForm);
+                addAdminForm.addRaceButton.Visible = false;
+                addAdminForm.deleteRaceButton.Visible = false;
+                addAdminForm.addAdministratorButton.Visible = false;
+                addAdminForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(addAdminForm);
+                addAdminForm.addAdministratorButton.Visible = false;
+                addAdminForm.deleteAdminButton.Visible = false;
             }
             addAdminForm.StartPosition = FormStartPosition.CenterScreen;
             addAdminForm.ShowDialog();
@@ -169,11 +192,15 @@ namespace sellTrainTickets.Views
             DeleteAdminForm deleteAdminForm = new DeleteAdminForm();
             if (!isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForUser(deleteAdminForm);
+                deleteAdminForm.addRaceButton.Visible = false;
+                deleteAdminForm.deleteRaceButton.Visible = false;
+                deleteAdminForm.addAdministratorButton.Visible = false;
+                deleteAdminForm.deleteAdminButton.Visible = false;
             }
             else if (isAdmin && !isSuperAdmin)
             {
-                //hideOptionsForAdmin(deleteAdminForm);
+                deleteAdminForm.addAdministratorButton.Visible = false;
+                deleteAdminForm.deleteAdminButton.Visible = false;
             }
             deleteAdminForm.StartPosition = FormStartPosition.CenterScreen;
             deleteAdminForm.ShowDialog();

@@ -87,6 +87,16 @@ namespace sellTrainTickets.Views
         {
             Controller.clickOnDeleteAdminOption(this);
         }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            Controller.clickOnRefreshButton();
+        }
+
+        private void fillButton_Click(object sender, EventArgs e)
+        {
+            Controller.clickOnFillButton();
+        }
     }
 }
 

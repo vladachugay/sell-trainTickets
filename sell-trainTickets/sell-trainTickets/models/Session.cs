@@ -5,16 +5,16 @@ namespace sellTrainTickets.Models
 	public class Session
 	{
 		private string userEmail;
-		private string ip;
+		private string Mac;
 
 		public Session()
 		{
 		}
 
-		public Session(string userEmail, string ip)
+		public Session(string userEmail, string MAC)
 		{
 			this.userEmail = userEmail;
-			this.ip = ip;
+			this.Mac = MAC;
 		}
 
 		public string UserEmail
@@ -23,10 +23,10 @@ namespace sellTrainTickets.Models
 			set { userEmail = value; }
 		}
 
-		public string Ip
+		public string MAC
 		{
-			get { return ip; }
-			set { ip = value; }
+			get { return Mac; }
+			set { Mac = value; }
 		}
 	}
 }

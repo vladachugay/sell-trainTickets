@@ -8,6 +8,7 @@ using sellTrainTickets.Views;
 using sellTrainTickets.Models;
 using System.Net;
 using System.Collections;
+using System.Net.NetworkInformation;
 
 namespace sellTrainTickets.Controllers
 {
@@ -22,23 +23,28 @@ namespace sellTrainTickets.Controllers
             view.show();
         }
 
-        [Obsolete]
-        private static string getIP()
+        private static string getMAC()
         {
-            string hostName = Dns.GetHostName(); // Retrive the Name of HOST 
-            // Get the IP  
-            return Dns.GetHostByName(hostName).AddressList[0].ToString();
+            string addr = "";
+            foreach (NetworkInterface n in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (n.OperationalStatus == OperationalStatus.Up)
+                {
+                    addr += n.GetPhysicalAddress().ToString();
+                    break;
+                }
+            }
+            return addr;
         }
 
-        [Obsolete]
         public static void login(string email, string pass, AuthorizationForm authorizationForm)
         {
             try
             {
                 if (validator.checkAuthorization(dataService.getUserWithLogPass(email, pass)))
                 {
-                    dataService.addSession(email, getIP());
-                    view.toMainForm(authorizationForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                    dataService.addSession(email, getMAC());
+                    view.toMainForm(authorizationForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
                 }
                 else
                 {
@@ -51,13 +57,11 @@ namespace sellTrainTickets.Controllers
             }  
 
         }
-
-        [Obsolete]
         public static void closeApplication()
         {
             try
             {
-                dataService.deleteSession(getIP());
+                dataService.deleteSession(getMAC());
                 DBSource.closeConnection();
             }
             catch (Exception e)
@@ -66,13 +70,12 @@ namespace sellTrainTickets.Controllers
             } 
         }
 
-        [Obsolete]
         public static void registrate(string fullName, string email, string pass, Form RegistrationForm)
         {
             try
             {
                 dataService.addUser(fullName, email, pass);
-                dataService.addSession(email, getIP());
+                dataService.addSession(email, getMAC());
                 view.fromRegistrationToMainForm(RegistrationForm);
             }
             catch (Exception e)
@@ -82,12 +85,11 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnSearchRacesButton(Form form)
         {
             try
             {
-                view.toMainForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                view.toMainForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -95,13 +97,12 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnAvailableRacesButton(string departureCity, string arrivalCity, DateTime date, Form MainForm)
         {
             try
             {
                 ArrayList availableRaces = dataService.findRaces(departureCity, arrivalCity, date);
-                view.toAvailableRacesForm(MainForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()), availableRaces);
+                view.toAvailableRacesForm(MainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), availableRaces);
             }
             catch (Exception e)
             {
@@ -109,14 +110,13 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnRace(int raceId, string date, string deprtureCity, string arrivalCity, Form AvailableRacesForm)
         {
             try
             {
-                User user = dataService.getUser(getIP());
+                User user = dataService.getUser(getMAC());
                 Ticket ticket = dataService.createTicket(raceId, date, deprtureCity, arrivalCity, user.FullName);
-                view.toPayForm(AvailableRacesForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()), ticket);
+                view.toPayForm(AvailableRacesForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), ticket);
             }
             catch (Exception e)
             {
@@ -124,16 +124,15 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnPayButton(int raceId, string date, string deprtureCity, string arrivalCity, Form PayForm)
         {
             try
             {
-                User user = dataService.getUser(getIP());
+                User user = dataService.getUser(getMAC());
                 Ticket boughtTicket = dataService.createTicket(raceId, date, deprtureCity, arrivalCity, user.FullName);
                 dataService.buyTicket(boughtTicket);
                 List<Ticket> userTickets = dataService.getUsersTickets(user.Email);
-                view.toInfoForm(PayForm, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()), userTickets, user);
+                view.toInfoForm(PayForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), userTickets, user);
             }
             catch (Exception e)
             {
@@ -141,14 +140,13 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnInfoButton(Form form)
         {
             try
             {
-                User user = dataService.getUser(getIP());
+                User user = dataService.getUser(getMAC());
                 List<Ticket> userTickets = dataService.getUsersTickets(user.Email);
-                view.toInfoForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()), userTickets, user);
+                view.toInfoForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), userTickets, user);
             }
             catch (Exception e)
             {
@@ -169,12 +167,11 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnAddRaceOption(Form form)
         {
             try
             {
-                view.toAddRaceForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                view.toAddRaceForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -182,12 +179,13 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnAddRaceButton(Form form, int id, string stations, string arrivalTime, string departureTime, int numOfSeats)
+        public static void clickOnAddRaceButton(Form form, int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
         {
             try
             {
-                dataService.addRace(id, stations, arrivalTime, departureTime, numOfSeats);
-                view.toMainForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+
+               dataService.addRace(id, name, stations, arrivalTime, departureTime, numOfSeats, price);
+                view.toMainForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -195,12 +193,11 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnDeleteRaceOption(Form form)
         {
             try
             {
-                view.toDeleteRaceForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                view.toDeleteRaceForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -220,12 +217,11 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnAddAdminOption(Form form)
         {
             try
             {
-                view.toAddAdminForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                view.toAddAdminForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -245,12 +241,11 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        [Obsolete]
         public static void clickOnDeleteAdminOption(Form form)
         {
             try
             {
-                view.toDeleteAdminForm(form, dataService.isAdmin(getIP()), dataService.isSuperAdmin(getIP()));
+                view.toDeleteAdminForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
             }
             catch (Exception e)
             {
@@ -263,6 +258,30 @@ namespace sellTrainTickets.Controllers
             try
             {
                 dataService.deleteAdmin(email);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        
+        public static void clickOnRefreshButton()
+        {
+            try
+            {
+                dataService.refreshSchedule();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public static void clickOnFillButton()
+        {
+            try
+            {
+                dataService.fillSchedule();
             }
             catch (Exception e)
             {
