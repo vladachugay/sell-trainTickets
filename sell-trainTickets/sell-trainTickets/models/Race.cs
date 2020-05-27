@@ -12,19 +12,30 @@ namespace sellTrainTickets.Models
 		private List<DateTime> arrivalTime;
 		private List<DateTime> departureTime;
 		private int numOfSeats;
+		private int price;
 
 		public Race()
 		{
 		}
 
-		public Race(string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats)
+		public Race(string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats, int price)
 		{
 			this.name = name;
 			this.stations = stations;
 			this.arrivalTime = arrivalTime;
 			this.departureTime = departureTime;
 			this.numOfSeats = numOfSeats;
+			this.price = price;
 		}
+		public Race(string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int price)
+		{
+			this.name = name;
+			this.stations = stations;
+			this.arrivalTime = arrivalTime;
+			this.departureTime = departureTime;
+			this.price = price;
+		}
+
 		public Race(int id, string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats)
 		{
 			this.id = id;
@@ -39,6 +50,12 @@ namespace sellTrainTickets.Models
 		{
 			get { return id; }
 			set { id = value; }
+		}
+
+		public int Price
+		{
+			get { return price; }
+			set { price = value; }
 		}
 
 		public string Name

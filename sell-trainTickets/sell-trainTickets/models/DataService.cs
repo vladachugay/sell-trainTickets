@@ -32,7 +32,6 @@ namespace sellTrainTickets.Models
 
 		public void deleteSession(string MAC)
 		{
-			
 			string sql = $"DELETE FROM public.\"SESSION\" WHERE \"MAC\" = '{MAC}';";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
@@ -131,7 +130,11 @@ namespace sellTrainTickets.Models
 
 		public void returnTicket(int id)
 		{
-
+			string sql = $"DELETE FROM public.\"TICKET\" WHERE \"ID\" = '{id}';";
+			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				cmd.ExecuteNonQuery();
+			}
 		}
 
 		public void buyTicket(Ticket ticket)
@@ -141,8 +144,31 @@ namespace sellTrainTickets.Models
 
 		public ArrayList findRaces(string departureCity, string arrivalCity, DateTime date)
 		{
-
-			return new ArrayList();
+			ArrayList races = new ArrayList();
+			string sql = $"SELECT r.\"NAME\", r.\"STATIONS\", r.\"DEPARTURE_TIME\", r.\"ARRIVAL_TIME\", r.\"PRICE\" " +
+				$"FROM public.\"RACE\" r JOIN public.\"SCHEDULE\" s ON r.\"ID\" = s.\"RACE_ID\"" +
+				$" WHERE s.\"DATE\" = '{date.ToString("d")}' AND r.\"STATIONS\" LIKE '%{departureCity}%{arrivalCity}%' AND s.\"NUM_OF_FREE_SEATS\" > 0;";
+			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						List<DateTime> departureTimes = new List<DateTime>();
+						List<DateTime> arrivalTimes = new List<DateTime>();
+						string[] dt = reader.GetString(2).Split(';');
+						string[] at = reader.GetString(3).Split(';');
+						for (int i = 0; i < dt.Length; i++)
+						{
+							departureTimes.Add(Convert.ToDateTime(dt[i]));
+							arrivalTimes.Add(Convert.ToDateTime(at[i]));
+						}
+						races.Add(new Race(reader.GetString(0), new List<string>(reader.GetString(1).Split(';')),
+								departureTimes, arrivalTimes, reader.GetInt32(4)));
+					}
+				}
+			}
+			return races;
 		}
 		
 		public Ticket createTicket(int raceId, string date, string deprtureCity, string arrivalCity, string fullName)
@@ -192,7 +218,55 @@ namespace sellTrainTickets.Models
 
 		public void refreshSchedule()
 		{
-
+			ArrayList date = new ArrayList();
+			string sql = $"SELECT DISTINCT s.\"DATE\" FROM public.\"SCHEDULE\" s;";
+			using (var cmd1 = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				using (NpgsqlDataReader reader = cmd1.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						date.Add(Convert.ToDateTime(reader.GetString(0)));
+					}
+				}
+			}
+			date.Sort();
+			TimeSpan span = DateTime.Today.Subtract((DateTime)date[0]);
+			int diffInDays = (int)span.TotalDays;
+			Console.WriteLine(diffInDays);
+			for (int i = diffInDays; i > 0; i--)
+			{
+				sql = $"DELETE FROM public.\"SCHEDULE\" WHERE \"DATE\" = '{DateTime.Today.AddDays(-i).ToString("d")}';";
+				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+				{
+					cmd.ExecuteNonQuery();
+				}
+			}
+			ArrayList id = new ArrayList();
+			ArrayList num_of_seats = new ArrayList();
+			sql = $"SELECT r.\"ID\", r.\"NUM_OF_SEATS\" FROM public.\"RACE\" r;";
+			using (var cmd1 = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				using (NpgsqlDataReader reader = cmd1.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						id.Add(reader.GetInt32(0));
+						num_of_seats.Add(reader.GetInt32(1));
+					}
+				}
+			}
+			for (int i = 31 - diffInDays; i < 31 ; i++)
+			{
+				for (int j = 0; j < id.Count; j++)
+				{
+					sql = $"INSERT INTO public.\"SCHEDULE\" VALUES ('{id[j]}', '{num_of_seats[j]}', '{DateTime.Today.AddDays(i).ToString("d")}');";
+					using (var cmd2 = new NpgsqlCommand(sql, DBSource.getConnection()))
+					{
+						cmd2.ExecuteNonQuery();
+					}
+				}
+			}
 		}
 
 		public void fillSchedule()
