@@ -36,14 +36,14 @@ namespace sellTrainTickets.Models
 			this.price = price;
 		}
 
-		public Race(int id, string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int numOfSeats)
+		public Race(int id, string name, List<string> stations, List<DateTime> arrivalTime, List<DateTime> departureTime, int price)
 		{
 			this.id = id;
 			this.name = name;
 			this.stations = stations;
 			this.arrivalTime = arrivalTime;
 			this.departureTime = departureTime;
-			this.numOfSeats = numOfSeats;
+			this.price = price;
 		}
 
 		public int Id

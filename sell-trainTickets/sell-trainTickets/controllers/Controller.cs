@@ -97,12 +97,26 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnAvailableRacesButton(string departureCity, string arrivalCity, DateTime date, Form MainForm)
+        public static void clickOnAvailableRacesButton(string departureCity, string arrivalCity, DateTime date, MainForm mainForm)
         {
             try
             {
-                ArrayList availableRaces = dataService.findRaces(departureCity, arrivalCity, date);
-                view.toAvailableRacesForm(MainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), availableRaces);
+                List<Race> availableRaces = dataService.findRaces(departureCity, arrivalCity, date);
+                int[] departureStationIndexes = new int[availableRaces.Count];
+                int[] arrivalStationIndexes = new int[availableRaces.Count];
+                for (int i = 0; i < availableRaces.Count; i++)
+                {
+                    departureStationIndexes[i] = availableRaces[i].Stations.FindIndex(x => x.Contains(departureCity));
+                    arrivalStationIndexes[i] = availableRaces[i].Stations.FindIndex(x => x.Contains(arrivalCity));
+                }
+                if (availableRaces.Count > 0 )
+                {
+                    view.toAvailableRacesForm(mainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), 
+                        availableRaces, departureStationIndexes, arrivalStationIndexes, date);
+                }
+                view.toAvailableRacesForm(mainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), 
+                    availableRaces, departureStationIndexes, arrivalStationIndexes, date);
+
             }
             catch (Exception e)
             {
@@ -110,13 +124,13 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnRace(int raceId, string date, string deprtureCity, string arrivalCity, Form AvailableRacesForm)
+        public static void clickOnRace(int raceId, DateTime date, string departureCity, string arrivalCity, AvailableRacesForm availableRacesForm)
         {
             try
             {
                 User user = dataService.getUser(getMAC());
-                Ticket ticket = dataService.createTicket(raceId, date, deprtureCity, arrivalCity, user.FullName);
-                view.toPayForm(AvailableRacesForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), ticket);
+                Ticket ticket = dataService.createTicket(raceId, date, departureCity, arrivalCity, user.FullName);
+                view.toPayForm(availableRacesForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), ticket);
             }
             catch (Exception e)
             {
@@ -124,15 +138,15 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnPayButton(int raceId, string date, string deprtureCity, string arrivalCity, Form PayForm)
+        public static void clickOnPayButton(int raceId, DateTime date, string deprtureCity, string arrivalCity, PayForm payForm)
         {
             try
             {
                 User user = dataService.getUser(getMAC());
                 Ticket boughtTicket = dataService.createTicket(raceId, date, deprtureCity, arrivalCity, user.FullName);
-                dataService.buyTicket(boughtTicket);
+                dataService.buyTicket(boughtTicket, user.Email);
                 List<Ticket> userTickets = dataService.getUsersTickets(user.Email);
-                view.toInfoForm(PayForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), userTickets, user);
+                view.toInfoForm(payForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), userTickets, user);
             }
             catch (Exception e)
             {
@@ -154,12 +168,12 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnReturnTicket(int id, Form InfoForm)
+        public static void clickOnReturnTicket(int id, InfoForm infoForm)
         {
             try
             {
                 dataService.returnTicket(id);
-                view.deleteTicket(InfoForm);
+                clickOnInfoButton(infoForm);
             }
             catch (Exception e)
             {

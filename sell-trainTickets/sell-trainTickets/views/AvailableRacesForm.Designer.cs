@@ -48,9 +48,10 @@
             this.availableRacesLabel.AutoSize = true;
             this.availableRacesLabel.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 10.75F);
             this.availableRacesLabel.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.availableRacesLabel.Location = new System.Drawing.Point(204, 9);
+            this.availableRacesLabel.Location = new System.Drawing.Point(272, 11);
+            this.availableRacesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.availableRacesLabel.Name = "availableRacesLabel";
-            this.availableRacesLabel.Size = new System.Drawing.Size(114, 20);
+            this.availableRacesLabel.Size = new System.Drawing.Size(137, 25);
             this.availableRacesLabel.TabIndex = 0;
             this.availableRacesLabel.Text = "Доступні рейси:";
             // 
@@ -65,8 +66,9 @@
             this.menuPanel.Controls.Add(this.infoButton);
             this.menuPanel.Controls.Add(this.searchRaceButton);
             this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Margin = new System.Windows.Forms.Padding(4);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.Size = new System.Drawing.Size(186, 480);
+            this.menuPanel.Size = new System.Drawing.Size(248, 591);
             this.menuPanel.TabIndex = 6;
             // 
             // deleteAdminButton
@@ -75,9 +77,10 @@
             this.deleteAdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.deleteAdminButton.Font = new System.Drawing.Font("Yu Gothic UI Light", 10.8F);
             this.deleteAdminButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.deleteAdminButton.Location = new System.Drawing.Point(1, 268);
+            this.deleteAdminButton.Location = new System.Drawing.Point(1, 330);
+            this.deleteAdminButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteAdminButton.Name = "deleteAdminButton";
-            this.deleteAdminButton.Size = new System.Drawing.Size(184, 50);
+            this.deleteAdminButton.Size = new System.Drawing.Size(245, 62);
             this.deleteAdminButton.TabIndex = 5;
             this.deleteAdminButton.Text = "Видалити адміністратора";
             this.deleteAdminButton.UseVisualStyleBackColor = false;
@@ -89,9 +92,10 @@
             this.addAdministratorButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.addAdministratorButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.addAdministratorButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addAdministratorButton.Location = new System.Drawing.Point(1, 215);
+            this.addAdministratorButton.Location = new System.Drawing.Point(1, 265);
+            this.addAdministratorButton.Margin = new System.Windows.Forms.Padding(4);
             this.addAdministratorButton.Name = "addAdministratorButton";
-            this.addAdministratorButton.Size = new System.Drawing.Size(184, 50);
+            this.addAdministratorButton.Size = new System.Drawing.Size(245, 62);
             this.addAdministratorButton.TabIndex = 4;
             this.addAdministratorButton.Text = "Додати адміністратора";
             this.addAdministratorButton.UseVisualStyleBackColor = false;
@@ -103,9 +107,10 @@
             this.deleteRaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.deleteRaceButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.deleteRaceButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.deleteRaceButton.Location = new System.Drawing.Point(1, 162);
+            this.deleteRaceButton.Location = new System.Drawing.Point(1, 199);
+            this.deleteRaceButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteRaceButton.Name = "deleteRaceButton";
-            this.deleteRaceButton.Size = new System.Drawing.Size(184, 50);
+            this.deleteRaceButton.Size = new System.Drawing.Size(245, 62);
             this.deleteRaceButton.TabIndex = 3;
             this.deleteRaceButton.Text = "Видалити рейс";
             this.deleteRaceButton.UseVisualStyleBackColor = false;
@@ -117,9 +122,10 @@
             this.addRaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.addRaceButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.addRaceButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addRaceButton.Location = new System.Drawing.Point(1, 109);
+            this.addRaceButton.Location = new System.Drawing.Point(1, 134);
+            this.addRaceButton.Margin = new System.Windows.Forms.Padding(4);
             this.addRaceButton.Name = "addRaceButton";
-            this.addRaceButton.Size = new System.Drawing.Size(184, 50);
+            this.addRaceButton.Size = new System.Drawing.Size(245, 62);
             this.addRaceButton.TabIndex = 2;
             this.addRaceButton.Text = "Додати рейс";
             this.addRaceButton.UseVisualStyleBackColor = false;
@@ -131,9 +137,10 @@
             this.infoButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.infoButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.infoButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.infoButton.Location = new System.Drawing.Point(1, 56);
+            this.infoButton.Location = new System.Drawing.Point(1, 69);
+            this.infoButton.Margin = new System.Windows.Forms.Padding(4);
             this.infoButton.Name = "infoButton";
-            this.infoButton.Size = new System.Drawing.Size(184, 50);
+            this.infoButton.Size = new System.Drawing.Size(245, 62);
             this.infoButton.TabIndex = 1;
             this.infoButton.Text = "Особистий кабінет";
             this.infoButton.UseVisualStyleBackColor = false;
@@ -145,9 +152,10 @@
             this.searchRaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.searchRaceButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.searchRaceButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchRaceButton.Location = new System.Drawing.Point(1, 3);
+            this.searchRaceButton.Location = new System.Drawing.Point(1, 4);
+            this.searchRaceButton.Margin = new System.Windows.Forms.Padding(4);
             this.searchRaceButton.Name = "searchRaceButton";
-            this.searchRaceButton.Size = new System.Drawing.Size(184, 50);
+            this.searchRaceButton.Size = new System.Drawing.Size(245, 62);
             this.searchRaceButton.TabIndex = 0;
             this.searchRaceButton.Text = "Пошук рейсу";
             this.searchRaceButton.UseVisualStyleBackColor = false;
@@ -155,14 +163,20 @@
             // 
             // availableRacesGrid
             // 
+            this.availableRacesGrid.AllowUserToAddRows = false;
+            this.availableRacesGrid.AllowUserToDeleteRows = false;
             this.availableRacesGrid.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.availableRacesGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.availableRacesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.availableRacesGrid.Location = new System.Drawing.Point(208, 49);
+            this.availableRacesGrid.Location = new System.Drawing.Point(277, 60);
+            this.availableRacesGrid.Margin = new System.Windows.Forms.Padding(4);
             this.availableRacesGrid.Name = "availableRacesGrid";
+            this.availableRacesGrid.ReadOnly = true;
+            this.availableRacesGrid.RowHeadersWidth = 51;
             this.availableRacesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.availableRacesGrid.Size = new System.Drawing.Size(537, 399);
+            this.availableRacesGrid.Size = new System.Drawing.Size(716, 491);
             this.availableRacesGrid.TabIndex = 7;
+            this.availableRacesGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.availableRacesGrid_CellContentClick);
             // 
             // CloseButton
             // 
@@ -170,10 +184,9 @@
             this.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
-            this.CloseButton.Location = new System.Drawing.Point(749, 4);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CloseButton.Location = new System.Drawing.Point(999, 5);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(18, 17);
+            this.CloseButton.Size = new System.Drawing.Size(21, 20);
             this.CloseButton.TabIndex = 8;
             this.CloseButton.Text = "X";
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -182,10 +195,10 @@
             // 
             // AvailableRacesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(770, 480);
+            this.ClientSize = new System.Drawing.Size(1027, 591);
             this.ControlBox = false;
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.availableRacesGrid);
@@ -193,6 +206,7 @@
             this.Controls.Add(this.availableRacesLabel);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AvailableRacesForm";
             this.Text = "AvailableRacesForm";
             this.Load += new System.EventHandler(this.AvailableRacesForm_Load);

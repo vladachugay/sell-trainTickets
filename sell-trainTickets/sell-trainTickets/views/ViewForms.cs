@@ -50,9 +50,10 @@ namespace sellTrainTickets.Views
         }
 
 
-        public void toAvailableRacesForm(Form form, bool isAdmin, bool isSuperAdmin, ArrayList availableRaces)
+        public void toAvailableRacesForm(MainForm mainForm, bool isAdmin, bool isSuperAdmin, List<Race> availableRaces,
+            int[] departureStationIndexes, int[] arrivalStationIndexes, DateTime date)
         {
-            form.Hide();
+            mainForm.Hide();
             AvailableRacesForm availableRacesForm = new AvailableRacesForm();
             if (!isAdmin && !isSuperAdmin)
             {
@@ -66,14 +67,17 @@ namespace sellTrainTickets.Views
                 availableRacesForm.addAdministratorButton.Visible = false;
                 availableRacesForm.deleteAdminButton.Visible = false; ;
             }
-
-            foreach (var availableRace in availableRaces)
+            availableRacesForm.createAvailableRacesTable(availableRaces[0].Stations[departureStationIndexes[0]],
+                availableRaces[0].Stations[arrivalStationIndexes[0]]);
+            for (int i = 0; i < availableRaces.Count; i++)
             {
-                //
+                availableRacesForm.fillAvailableRacesTable(availableRaces[i].Id, availableRaces[i].Name,
+                    availableRaces[i].DepartureTime[departureStationIndexes[i]].ToString("t"), availableRaces[i].ArrivalTime[arrivalStationIndexes[i]].ToString("t"), 
+                    date.ToString("d"));
             }
             availableRacesForm.StartPosition = FormStartPosition.CenterScreen;
             availableRacesForm.ShowDialog();
-            form.Close();
+            mainForm.Close();
         }
 
         public void toPayForm(Form form, bool isAdmin, bool isSuperAdmin, Ticket ticket)
@@ -92,7 +96,14 @@ namespace sellTrainTickets.Views
                 payForm.addAdministratorButton.Visible = false;
                 payForm.deleteAdminButton.Visible = false;
             }
-            //вивести квиток
+            payForm.raceIDTextBox.Text = ticket.RaceId.ToString();
+            payForm.departureStationTextBox.Text = ticket.DepartureCity;
+            payForm.departureTimeTextBox.Text = ticket.DepartureTime.ToString("t");
+            payForm.arrivalStationTextBox.Text = ticket.ArrivalCity;
+            payForm.arrivalTimeTextBox.Text = ticket.ArrivalTime.ToString("t");
+            payForm.priceTextBox.Text = ticket.Price.ToString();
+            payForm.fullNameTextBox.Text = ticket.FullName;
+            payForm.dateTextBox.Text = ticket.Date.ToString("d");
             payForm.StartPosition = FormStartPosition.CenterScreen;
             payForm.ShowDialog();
             form.Close();
@@ -117,7 +128,11 @@ namespace sellTrainTickets.Views
             infoForm.surnameTextBox.Text = user.FullName.Split(' ')[0];
             infoForm.nameTextBox.Text = user.FullName.Split(' ')[1];
             infoForm.emailTextBox.Text = user.Email;
-            //вивсти інфрмацію про користувача та його КВИТКИ!!!!!!
+            foreach (var ticket in tickets)
+            {
+                infoForm.fillUsersTicketsTable(ticket.Id, ticket.RaceId, ticket.DepartureCity, ticket.ArrivalCity,
+                    ticket.DepartureTime, ticket.ArrivalTime, ticket.Date);
+            }
             infoForm.StartPosition = FormStartPosition.CenterScreen;
             infoForm.ShowDialog();
             form.Close();

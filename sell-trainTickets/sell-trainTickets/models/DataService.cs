@@ -137,15 +137,29 @@ namespace sellTrainTickets.Models
 			}
 		}
 
-		public void buyTicket(Ticket ticket)
+		public void buyTicket(Ticket ticket, string email)
 		{
+			
+			string sql = $"UPDATE public.\"SCHEDULE\" SET \"NUM_OF_FREE_SEATS\" = \"NUM_OF_FREE_SEATS\" - 1 " +
+				$"WHERE \"RACE_ID\" = '{ticket.RaceId}' AND \"DATE\" = '{ticket.Date.ToString("d")}';";
+			using (var cmd1 = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				cmd1.ExecuteNonQuery();
+			}
+			sql = $"INSERT INTO public.\"TICKET\" (\"RACE_ID\", \"DEPARTURE_CITY\", \"ARRIVAL_CITY\", \"DEPARTURE_TIME\", \"ARRIVAL_TIME\"," +
+				$" \"USER_EMAIL\", \"PRICE\", \"DATE\") VALUES ({ticket.RaceId}, '{ticket.DepartureCity}', '{ticket.ArrivalCity}', " +
+				$"'{ticket.DepartureTime.ToString("t")}', '{ticket.ArrivalTime.ToString("t")}', '{email}', {ticket.Price}, '{ticket.Date.ToString("d")}');";
+			using (var cmd2 = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				cmd2.ExecuteNonQuery();
+			}
 
 		}
 
-		public ArrayList findRaces(string departureCity, string arrivalCity, DateTime date)
+		public List<Race> findRaces(string departureCity, string arrivalCity, DateTime date)
 		{
-			ArrayList races = new ArrayList();
-			string sql = $"SELECT r.\"NAME\", r.\"STATIONS\", r.\"DEPARTURE_TIME\", r.\"ARRIVAL_TIME\", r.\"PRICE\" " +
+			List<Race> races = new List<Race>();
+			string sql = $"SELECT r.\"ID\", r.\"NAME\", r.\"STATIONS\", r.\"DEPARTURE_TIME\", r.\"ARRIVAL_TIME\", r.\"PRICE\" " +
 				$"FROM public.\"RACE\" r JOIN public.\"SCHEDULE\" s ON r.\"ID\" = s.\"RACE_ID\"" +
 				$" WHERE s.\"DATE\" = '{date.ToString("d")}' AND r.\"STATIONS\" LIKE '%{departureCity}%{arrivalCity}%' AND s.\"NUM_OF_FREE_SEATS\" > 0;";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
@@ -156,29 +170,68 @@ namespace sellTrainTickets.Models
 					{
 						List<DateTime> departureTimes = new List<DateTime>();
 						List<DateTime> arrivalTimes = new List<DateTime>();
-						string[] dt = reader.GetString(2).Split(';');
-						string[] at = reader.GetString(3).Split(';');
+						string[] dt = reader.GetString(3).Split(';');
+						string[] at = reader.GetString(4).Split(';');
 						for (int i = 0; i < dt.Length; i++)
 						{
 							departureTimes.Add(Convert.ToDateTime(dt[i]));
 							arrivalTimes.Add(Convert.ToDateTime(at[i]));
 						}
-						races.Add(new Race(reader.GetString(0), new List<string>(reader.GetString(1).Split(';')),
-								departureTimes, arrivalTimes, reader.GetInt32(4)));
+						Console.WriteLine(departureTimes[0]);
+						races.Add(new Race(reader.GetInt32(0), reader.GetString(1), new List<string>(reader.GetString(2).Split(';')),
+								departureTimes, arrivalTimes, reader.GetInt32(5)));
 					}
 				}
 			}
 			return races;
 		}
 		
-		public Ticket createTicket(int raceId, string date, string deprtureCity, string arrivalCity, string fullName)
+		public Ticket createTicket(int raceId, DateTime date, string departureCity, string arrivalCity, string fullName)
 		{
-			return new Ticket();
+			List<string> departureTimes = new List<string>();
+			List<string> arrivalTimes = new List<string>();
+			List<string> stations = new List<string>();
+			int price = 0;
+			string sql = $"SELECT r.\"STATIONS\", r.\"DEPARTURE_TIME\", r.\"ARRIVAL_TIME\", r.\"PRICE\" FROM public.\"RACE\" r WHERE r.\"ID\" = '{raceId}';";
+			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						stations = new List<string>(reader.GetString(0).Split(';'));
+						departureTimes = new List<string>(reader.GetString(1).Split(';'));
+						arrivalTimes = new List<string>(reader.GetString(2).Split(';'));
+						price = reader.GetInt32(3);
+					}
+				}
+			}
+			int departureStationIndex = stations.FindIndex(x => x.Contains(departureCity));
+			int arrivalStationIndex = stations.FindIndex(x => x.Contains(arrivalCity));
+			string departureTime = departureTimes[departureStationIndex];
+			string arrivalTime = arrivalTimes[arrivalStationIndex];
+			price *= arrivalStationIndex - departureStationIndex;
+
+			return new Ticket(raceId, date, departureCity, arrivalCity, Convert.ToDateTime(departureTime), Convert.ToDateTime(arrivalTime), fullName, price);
 		}
 
 		public List<Ticket> getUsersTickets(string email)
 		{
-			return new List<Ticket>();
+			List<Ticket> tickets = new List<Ticket>();
+			string sql = $"SELECT t.\"ID\", t.\"RACE_ID\", t.\"DEPARTURE_CITY\", t.\"ARRIVAL_CITY\", t.\"DEPARTURE_TIME\", t.\"ARRIVAL_TIME\"," +
+				$"  t.\"DATE\" FROM public.\"TICKET\" t WHERE t.\"USER_EMAIL\" = '{email}';";
+			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+			{
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						tickets.Add(new Ticket(reader.GetInt32(0), reader.GetInt32(1), Convert.ToDateTime(reader.GetString(6)), reader.GetString(2),
+							reader.GetString(3),  Convert.ToDateTime(reader.GetString(4)), Convert.ToDateTime(reader.GetString(5))));
+					}
+				}
+			}
+			return tickets;
 		}
 
 		private string getUsersEmail(string MAC)

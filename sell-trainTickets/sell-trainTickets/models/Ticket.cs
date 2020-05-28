@@ -12,6 +12,7 @@ namespace sellTrainTickets.Models
 		private DateTime departureTime;
 		private DateTime arrivalTime;
 		private string fullName;
+		private string email;
 		private int price;
 
 		public Ticket()
@@ -29,6 +30,45 @@ namespace sellTrainTickets.Models
 			this.departureTime = departureTime;
 			this.arrivalTime = arrivalTime;
 			this.fullName = fullName;
+			this.price = price;
+		}
+
+		public Ticket(int raceId, DateTime date, string departureCity, string arrivalCity,
+			DateTime departureTime, DateTime arrivalTime, string fullName, int price)
+		{
+			this.raceId = raceId;
+			this.date = date;
+			this.departureCity = departureCity;
+			this.arrivalCity = arrivalCity;
+			this.departureTime = departureTime;
+			this.arrivalTime = arrivalTime;
+			this.fullName = fullName;
+			this.price = price;
+		}
+
+		public Ticket(int id, int raceId, DateTime date, string departureCity, string arrivalCity,
+			DateTime departureTime, DateTime arrivalTime)
+		{
+			this.id = id;
+			this.raceId = raceId;
+			this.date = date;
+			this.departureCity = departureCity;
+			this.arrivalCity = arrivalCity;
+			this.departureTime = departureTime;
+			this.arrivalTime = arrivalTime;
+		}
+
+		public Ticket(int raceId, DateTime date, string departureCity, string arrivalCity,
+			DateTime departureTime, DateTime arrivalTime, string fullName, string email, int price)
+		{
+			this.raceId = raceId;
+			this.date = date;
+			this.departureCity = departureCity;
+			this.arrivalCity = arrivalCity;
+			this.departureTime = departureTime;
+			this.arrivalTime = arrivalTime;
+			this.fullName = fullName;
+			this.email = email;
 			this.price = price;
 		}
 
@@ -84,6 +124,12 @@ namespace sellTrainTickets.Models
 		{
 			get { return price; }
 			set { price = value; }
+		}
+
+		public string Email
+		{
+			get { return email; }
+			set { email = value; }
 		}
 	}
 }

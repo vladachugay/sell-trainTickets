@@ -13,9 +13,28 @@ namespace sellTrainTickets.Views
 {
     public partial class InfoForm : Form
     {
+        DataSet dataSet;
+        DataTable usersTicketsTable;
         public InfoForm()
         {
             InitializeComponent();
+            createUsersTicketsTable();
+        }
+
+        private void createUsersTicketsTable()
+        {
+            dataSet = new DataSet();
+            usersTicketsTable = new DataTable();
+            dataSet.Tables.Add(usersTicketsTable);
+
+            usersTicketsTable.Columns.Add(new DataColumn("ID"));
+            usersTicketsTable.Columns.Add(new DataColumn("ID рейсу"));
+            usersTicketsTable.Columns.Add(new DataColumn("Станція відправлення"));
+            usersTicketsTable.Columns.Add(new DataColumn("Станція прибуття"));
+            usersTicketsTable.Columns.Add(new DataColumn("Час відправлення"));
+            usersTicketsTable.Columns.Add(new DataColumn("Час прибуття"));
+            usersTicketsTable.Columns.Add(new DataColumn("Дата"));
+            this.userTicketsGrid.DataSource = usersTicketsTable;
         }
 
         private void searchRaceButton_Click(object sender, EventArgs e)
@@ -64,5 +83,16 @@ namespace sellTrainTickets.Views
 
         }
 
+        public void fillUsersTicketsTable(int id, int raceId, string departureStation, string arrivalStation, DateTime departureTime,
+            DateTime arrivalTime, DateTime date)
+        {
+            this.usersTicketsTable.Rows.Add(id, raceId, departureStation, arrivalStation, departureTime.ToString("t"),
+                arrivalTime.ToString("t"), date.ToString("d"));
+        }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            Controller.clickOnReturnTicket(Int32.Parse(userTicketsGrid.CurrentRow.Cells[0].Value.ToString()), this);
+        }
     }
 }

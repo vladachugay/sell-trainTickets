@@ -66,9 +66,7 @@ namespace sellTrainTickets.Views
 
         private void payButton_Click(object sender, EventArgs e)
         {
-            Controller.clickOnPayButton(Int32.Parse(raceIDTextBox.Text), dateTextBox.Text, departureStationTextBox.Text, arrivalStationTextBox.Text, this);
+            Controller.clickOnPayButton(Int32.Parse(raceIDTextBox.Text), Convert.ToDateTime(dateTextBox.Text), departureStationTextBox.Text, arrivalStationTextBox.Text, this);
         }
-
-       
     }
 }

@@ -13,9 +13,25 @@ namespace sellTrainTickets.Views
 {
     public partial class AvailableRacesForm : Form
     {
+        DataSet dataSet;
+        DataTable availableRacesTable;
         public AvailableRacesForm()
         {
             InitializeComponent();
+        }
+
+        public void createAvailableRacesTable(string departureStation, string arrivalStation)
+        {
+            dataSet = new DataSet();
+            availableRacesTable = new DataTable();
+            dataSet.Tables.Add(availableRacesTable);
+
+            availableRacesTable.Columns.Add(new DataColumn("ID"));
+            availableRacesTable.Columns.Add(new DataColumn("Назва"));
+            availableRacesTable.Columns.Add(new DataColumn($"Час відправлення із станції {departureStation}"));
+            availableRacesTable.Columns.Add(new DataColumn($"Час прибуття на станцію {arrivalStation}")) ; 
+            availableRacesTable.Columns.Add(new DataColumn("Дата"));
+            this.availableRacesGrid.DataSource = availableRacesTable;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -67,6 +83,19 @@ namespace sellTrainTickets.Views
         private void AvailableRacesForm_Load(object sender, EventArgs e)
         {
 
+        }
+        public void fillAvailableRacesTable(int id, string name, string departureTime, string arrivalTime, string date)
+        {
+            availableRacesTable.Rows.Add(id, name, departureTime, arrivalTime, date);    
+        }
+
+        private void availableRacesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string[] columnNames = availableRacesTable.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray();
+
+            Controller.clickOnRace(Int32.Parse(availableRacesGrid.CurrentRow.Cells[0].Value.ToString()), 
+                Convert.ToDateTime(availableRacesGrid.CurrentRow.Cells[4].Value.ToString()),
+               columnNames[2].Split(' ')[4], columnNames[3].Split(' ')[4], this);
         }
     }
 }
