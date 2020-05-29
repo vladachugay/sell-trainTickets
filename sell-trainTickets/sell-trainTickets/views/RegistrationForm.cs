@@ -40,5 +40,34 @@ namespace sellTrainTickets.Views
         {
             CloseButton.ForeColor = Color.FromArgb(70, 77, 156);
         }
+
+        private void RegistrationForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void showRegistrationError()
+        {
+            this.registrationErrorLabel.Visible = true;
+        }
+
+        private void welcomeToAuthjrizationLabel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AuthorizationForm authorizationForm = new AuthorizationForm();
+            authorizationForm.StartPosition = FormStartPosition.CenterScreen;
+            authorizationForm.ShowDialog();
+            this.Close();
+        }
+
+        private void welcomeToAuthorizationLabel_MouseEnter(object sender, EventArgs e)
+        {
+            this.welcomeToAuthorizationLabel.ForeColor = Color.FromArgb(70, 77, 156);
+        }
+
+        private void welcomeToAuthorizationLabel_MouseLeave(object sender, EventArgs e)
+        {
+            this.welcomeToAuthorizationLabel.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        }
     }
 }

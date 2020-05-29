@@ -52,6 +52,12 @@ namespace sellTrainTickets.Views
 
         private void addRButton_Click(object sender, EventArgs e)
         {
+            int id;
+            if(!Int32.TryParse(IDTextBox.Text, out id))
+            {
+                //MessageBox.Show()
+            }
+
             string stations = "";
             string arrivalTime = "";
             string departureTime = "";
@@ -76,7 +82,7 @@ namespace sellTrainTickets.Views
             Console.WriteLine(departureTime);
             string name = addRaceDataGrid.Rows[0].Cells["Зупинка"].Value.ToString() + " - " +
                 addRaceDataGrid.Rows[addRaceDataGrid.Rows.Count - 2].Cells["Зупинка"].Value.ToString();
-            Controller.clickOnAddRaceButton(this, Int32.Parse(IDTextBox.Text), name, stations, arrivalTime, departureTime, 
+            Controller.clickOnAddRaceButton(this, id, name, stations, arrivalTime, departureTime, 
                 Int32.Parse(seatsTextBox.Text), Int32.Parse(priceTextBox.Text));
         }
 

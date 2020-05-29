@@ -48,6 +48,7 @@
             this.findButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.fillButton = new System.Windows.Forms.Button();
+            this.noResultErrorLabel = new System.Windows.Forms.Label();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             this.label1.Location = new System.Drawing.Point(163, 98);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 28);
+            this.label1.Size = new System.Drawing.Size(0, 21);
             this.label1.TabIndex = 0;
             // 
             // label2
@@ -66,7 +67,7 @@
             this.label2.Location = new System.Drawing.Point(163, 211);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 28);
+            this.label2.Size = new System.Drawing.Size(0, 21);
             this.label2.TabIndex = 1;
             // 
             // menuPanel
@@ -176,7 +177,7 @@
             this.CloseButton.Location = new System.Drawing.Point(748, 6);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(21, 20);
+            this.CloseButton.Size = new System.Drawing.Size(18, 17);
             this.CloseButton.TabIndex = 4;
             this.CloseButton.Text = "X";
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -186,18 +187,18 @@
             // FROMField
             // 
             this.FROMField.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FROMField.Location = new System.Drawing.Point(398, 118);
+            this.FROMField.Location = new System.Drawing.Point(394, 98);
             this.FROMField.Name = "FROMField";
-            this.FROMField.Size = new System.Drawing.Size(215, 39);
+            this.FROMField.Size = new System.Drawing.Size(215, 33);
             this.FROMField.TabIndex = 5;
             // 
             // TOField
             // 
             this.TOField.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TOField.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TOField.Location = new System.Drawing.Point(398, 185);
+            this.TOField.Location = new System.Drawing.Point(394, 165);
             this.TOField.Name = "TOField";
-            this.TOField.Size = new System.Drawing.Size(215, 39);
+            this.TOField.Size = new System.Drawing.Size(215, 33);
             this.TOField.TabIndex = 6;
             // 
             // fromLabel
@@ -205,9 +206,9 @@
             this.fromLabel.AutoSize = true;
             this.fromLabel.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.fromLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
-            this.fromLabel.Location = new System.Drawing.Point(322, 121);
+            this.fromLabel.Location = new System.Drawing.Point(318, 101);
             this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(88, 32);
+            this.fromLabel.Size = new System.Drawing.Size(70, 25);
             this.fromLabel.TabIndex = 7;
             this.fromLabel.Text = "Звідки:";
             // 
@@ -216,9 +217,9 @@
             this.toLabel.AutoSize = true;
             this.toLabel.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.toLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
-            this.toLabel.Location = new System.Drawing.Point(335, 188);
+            this.toLabel.Location = new System.Drawing.Point(331, 168);
             this.toLabel.Name = "toLabel";
-            this.toLabel.Size = new System.Drawing.Size(71, 32);
+            this.toLabel.Size = new System.Drawing.Size(57, 25);
             this.toLabel.TabIndex = 8;
             this.toLabel.Text = "Куди:";
             // 
@@ -229,10 +230,10 @@
             this.dateTimePicker.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
             this.dateTimePicker.CalendarTitleForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dateTimePicker.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker.Location = new System.Drawing.Point(398, 259);
+            this.dateTimePicker.Location = new System.Drawing.Point(394, 239);
             this.dateTimePicker.MinDate = new System.DateTime(2020, 5, 20, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(215, 39);
+            this.dateTimePicker.Size = new System.Drawing.Size(215, 33);
             this.dateTimePicker.TabIndex = 9;
             // 
             // label3
@@ -240,9 +241,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
-            this.label3.Location = new System.Drawing.Point(336, 265);
+            this.label3.Location = new System.Drawing.Point(332, 245);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 32);
+            this.label3.Size = new System.Drawing.Size(56, 25);
             this.label3.TabIndex = 10;
             this.label3.Text = "Дата:";
             // 
@@ -253,7 +254,7 @@
             this.findButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.findButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 16.25F);
             this.findButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.findButton.Location = new System.Drawing.Point(431, 360);
+            this.findButton.Location = new System.Drawing.Point(422, 343);
             this.findButton.Margin = new System.Windows.Forms.Padding(2);
             this.findButton.Name = "findButton";
             this.findButton.Size = new System.Drawing.Size(110, 42);
@@ -267,12 +268,12 @@
             this.refreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(177)))));
             this.refreshButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 16.25F);
+            this.refreshButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14F);
             this.refreshButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.refreshButton.Location = new System.Drawing.Point(247, 27);
+            this.refreshButton.Location = new System.Drawing.Point(232, 27);
             this.refreshButton.Margin = new System.Windows.Forms.Padding(2);
             this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(163, 40);
+            this.refreshButton.Size = new System.Drawing.Size(207, 40);
             this.refreshButton.TabIndex = 12;
             this.refreshButton.Text = "Обновити розклад";
             this.refreshButton.UseVisualStyleBackColor = false;
@@ -283,22 +284,35 @@
             this.fillButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(94)))), ((int)(((byte)(177)))));
             this.fillButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.fillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fillButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 16.25F);
+            this.fillButton.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.fillButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.fillButton.Location = new System.Drawing.Point(505, 27);
+            this.fillButton.Location = new System.Drawing.Point(496, 27);
             this.fillButton.Margin = new System.Windows.Forms.Padding(2);
             this.fillButton.Name = "fillButton";
-            this.fillButton.Size = new System.Drawing.Size(163, 40);
+            this.fillButton.Size = new System.Drawing.Size(231, 40);
             this.fillButton.TabIndex = 13;
             this.fillButton.Text = "Заповнити розклад";
             this.fillButton.UseVisualStyleBackColor = false;
             this.fillButton.Click += new System.EventHandler(this.fillButton_Click);
+            // 
+            // noResultErrorLabel
+            // 
+            this.noResultErrorLabel.AutoSize = true;
+            this.noResultErrorLabel.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.noResultErrorLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.noResultErrorLabel.Location = new System.Drawing.Point(307, 404);
+            this.noResultErrorLabel.Name = "noResultErrorLabel";
+            this.noResultErrorLabel.Size = new System.Drawing.Size(345, 21);
+            this.noResultErrorLabel.TabIndex = 14;
+            this.noResultErrorLabel.Text = "На задану дату немає ресів з таким напрямком";
+            this.noResultErrorLabel.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(770, 480);
+            this.Controls.Add(this.noResultErrorLabel);
             this.Controls.Add(this.fillButton);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.findButton);
@@ -343,7 +357,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button findButton;
-        private System.Windows.Forms.Button refreshButton;
-        private System.Windows.Forms.Button fillButton;
+        public System.Windows.Forms.Button refreshButton;
+        public System.Windows.Forms.Button fillButton;
+        private System.Windows.Forms.Label noResultErrorLabel;
     }
 }

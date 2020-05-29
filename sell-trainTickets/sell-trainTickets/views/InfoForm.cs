@@ -92,7 +92,15 @@ namespace sellTrainTickets.Views
 
         private void returnButton_Click(object sender, EventArgs e)
         {
-            Controller.clickOnReturnTicket(Int32.Parse(userTicketsGrid.CurrentRow.Cells[0].Value.ToString()), this);
+            if(userTicketsGrid.Rows.Count > 0)
+            {
+                Controller.clickOnReturnTicket(Int32.Parse(userTicketsGrid.CurrentRow.Cells[0].Value.ToString()), this);
+            }    
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Controller.clickOnExitButton(this);
         }
     }
 }

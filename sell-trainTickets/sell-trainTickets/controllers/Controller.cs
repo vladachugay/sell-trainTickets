@@ -70,18 +70,22 @@ namespace sellTrainTickets.Controllers
             } 
         }
 
-        public static void registrate(string fullName, string email, string pass, Form RegistrationForm)
+        public static void registrate(string fullName, string email, string pass, RegistrationForm registrationForm)
         {
             try
             {
                 dataService.addUser(fullName, email, pass);
                 dataService.addSession(email, getMAC());
-                view.fromRegistrationToMainForm(RegistrationForm);
+                view.fromRegistrationToMainForm(registrationForm);
+            }
+            catch (Npgsql.PostgresException e)
+            {
+                registrationForm.showRegistrationError();
+                Console.WriteLine(e.MessageText);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                // вивести помилку 
             }
         }
 
@@ -109,19 +113,25 @@ namespace sellTrainTickets.Controllers
                     departureStationIndexes[i] = availableRaces[i].Stations.FindIndex(x => x.Contains(departureCity));
                     arrivalStationIndexes[i] = availableRaces[i].Stations.FindIndex(x => x.Contains(arrivalCity));
                 }
-                if (availableRaces.Count > 0 )
+                if (availableRaces.Count > 0)
                 {
-                    view.toAvailableRacesForm(mainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), 
+                    view.toAvailableRacesForm(mainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()),
                         availableRaces, departureStationIndexes, arrivalStationIndexes, date);
                 }
-                view.toAvailableRacesForm(mainForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()), 
-                    availableRaces, departureStationIndexes, arrivalStationIndexes, date);
-
+                else
+                {
+                    mainForm.showNoResultError();
+                }
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
+            
         }
 
         public static void clickOnRace(int raceId, DateTime date, string departureCity, string arrivalCity, AvailableRacesForm availableRacesForm)
@@ -172,8 +182,14 @@ namespace sellTrainTickets.Controllers
         {
             try
             {
-                dataService.returnTicket(id);
-                clickOnInfoButton(infoForm);
+
+                DialogResult result = MessageBox.Show("Ви бажаєте повернути квиток? Ця дія не є зворотньою.", "Попередження", MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.Yes)
+                {
+                    dataService.returnTicket(id);
+                    clickOnInfoButton(infoForm);
+                }    
             }
             catch (Exception e)
             {
@@ -301,6 +317,12 @@ namespace sellTrainTickets.Controllers
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        public static void clickOnExitButton(InfoForm infoForm)
+        {
+            dataService.deleteSession(getMAC());
+            view.toAuthorizationForm(infoForm);
         }
     }
 }

@@ -68,5 +68,6 @@ namespace sellTrainTickets.Views
         {
             Controller.clickOnPayButton(Int32.Parse(raceIDTextBox.Text), Convert.ToDateTime(dateTextBox.Text), departureStationTextBox.Text, arrivalStationTextBox.Text, this);
         }
+
     }
 }

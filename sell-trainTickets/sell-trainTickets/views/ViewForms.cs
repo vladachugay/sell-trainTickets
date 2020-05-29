@@ -29,11 +29,15 @@ namespace sellTrainTickets.Views
                 mainForm.deleteRaceButton.Visible = false;
                 mainForm.addAdministratorButton.Visible = false;
                 mainForm.deleteAdminButton.Visible = false;
+                mainForm.fillButton.Visible = false;
+                mainForm.refreshButton.Visible = false;
             }
             else if(isAdmin && !isSuperAdmin)
             {
                 mainForm.addAdministratorButton.Visible = false;
                 mainForm.deleteAdminButton.Visible = false;
+                mainForm.fillButton.Visible = false;
+                mainForm.refreshButton.Visible = false;
             }
             mainForm.StartPosition = FormStartPosition.CenterScreen;
             mainForm.ShowDialog();
@@ -69,15 +73,22 @@ namespace sellTrainTickets.Views
             }
             availableRacesForm.createAvailableRacesTable(availableRaces[0].Stations[departureStationIndexes[0]],
                 availableRaces[0].Stations[arrivalStationIndexes[0]]);
-            for (int i = 0; i < availableRaces.Count; i++)
+            if(availableRaces.Count>0)
             {
-                availableRacesForm.fillAvailableRacesTable(availableRaces[i].Id, availableRaces[i].Name,
-                    availableRaces[i].DepartureTime[departureStationIndexes[i]].ToString("t"), availableRaces[i].ArrivalTime[arrivalStationIndexes[i]].ToString("t"), 
-                    date.ToString("d"));
+                for (int i = 0; i < availableRaces.Count; i++)
+                {
+                    availableRacesForm.fillAvailableRacesTable(availableRaces[i].Id, availableRaces[i].Name,
+                        availableRaces[i].DepartureTime[departureStationIndexes[i]].ToString("t"), availableRaces[i].ArrivalTime[arrivalStationIndexes[i]].ToString("t"),
+                        date.ToString("d"));
+                }
+                availableRacesForm.StartPosition = FormStartPosition.CenterScreen;
+                availableRacesForm.ShowDialog();
+                mainForm.Close();
             }
-            availableRacesForm.StartPosition = FormStartPosition.CenterScreen;
-            availableRacesForm.ShowDialog();
-            mainForm.Close();
+            else
+            {
+
+            }
         }
 
         public void toPayForm(Form form, bool isAdmin, bool isSuperAdmin, Ticket ticket)
@@ -101,7 +112,7 @@ namespace sellTrainTickets.Views
             payForm.departureTimeTextBox.Text = ticket.DepartureTime.ToString("t");
             payForm.arrivalStationTextBox.Text = ticket.ArrivalCity;
             payForm.arrivalTimeTextBox.Text = ticket.ArrivalTime.ToString("t");
-            payForm.priceTextBox.Text = ticket.Price.ToString();
+            payForm.priceTextBox.Text = ticket.Price.ToString() + " грн";
             payForm.fullNameTextBox.Text = ticket.FullName;
             payForm.dateTextBox.Text = ticket.Date.ToString("d");
             payForm.StartPosition = FormStartPosition.CenterScreen;
@@ -225,6 +236,15 @@ namespace sellTrainTickets.Views
         public void deleteTicket(Form InfoForm)
         {
 
+        }
+
+        public void toAuthorizationForm(Form form)
+        {
+            form.Hide();
+            AuthorizationForm authorizationForm = new AuthorizationForm();
+            authorizationForm.StartPosition = FormStartPosition.CenterScreen;
+            authorizationForm.ShowDialog();
+            form.Close();
         }
 
         public void getAuthorizationError(AuthorizationForm authorizationForm)

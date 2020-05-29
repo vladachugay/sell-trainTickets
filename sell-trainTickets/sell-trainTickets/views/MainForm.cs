@@ -97,6 +97,11 @@ namespace sellTrainTickets.Views
         {
             Controller.clickOnFillButton();
         }
+
+        public void showNoResultError()
+        {
+            this.noResultErrorLabel.Visible = true;
+        }
     }
 }
 
