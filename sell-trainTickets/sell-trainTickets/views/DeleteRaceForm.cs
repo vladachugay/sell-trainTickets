@@ -13,6 +13,8 @@ namespace sellTrainTickets.Views
 {
     public partial class DeleteRaceForm : Form
     {
+        private int x = 0; 
+        private int y = 0;
         public DeleteRaceForm()
         {
             InitializeComponent();
@@ -64,5 +66,18 @@ namespace sellTrainTickets.Views
             Controller.clickOnDeleteAdminOption(this);
         }
 
+        private void DeleteRaceForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void DeleteRaceForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
+        }
     }
 }

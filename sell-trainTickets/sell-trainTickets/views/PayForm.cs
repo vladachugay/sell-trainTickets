@@ -13,6 +13,8 @@ namespace sellTrainTickets.Views
 {
     public partial class PayForm : Form
     {
+        private int x = 0;
+        private int y = 0;
         public PayForm()
         {
             InitializeComponent();
@@ -69,5 +71,18 @@ namespace sellTrainTickets.Views
             Controller.clickOnPayButton(Int32.Parse(raceIDTextBox.Text), Convert.ToDateTime(dateTextBox.Text), departureStationTextBox.Text, arrivalStationTextBox.Text, this);
         }
 
+        private void PayForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void PayForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
+        }
     }
 }

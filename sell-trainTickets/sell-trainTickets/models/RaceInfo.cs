@@ -13,7 +13,7 @@ namespace sellTrainTickets.Models
 		{
 		}
 
-		public RaceInfo(DateTime date, int raceId, int numOfFreeSeats)
+		public RaceInfo(int raceId, int numOfFreeSeats, DateTime date)
 		{
 			this.date = date;
 			this.raceId = raceId;

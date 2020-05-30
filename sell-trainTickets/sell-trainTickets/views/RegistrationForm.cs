@@ -13,6 +13,7 @@ namespace sellTrainTickets.Views
 {
     public partial class RegistrationForm : Form
     {
+        private int x = 0; private int y = 0;
         public RegistrationForm()
         {
             InitializeComponent();
@@ -68,6 +69,20 @@ namespace sellTrainTickets.Views
         private void welcomeToAuthorizationLabel_MouseLeave(object sender, EventArgs e)
         {
             this.welcomeToAuthorizationLabel.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        }
+
+        private void RegistrationForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void RegistrationForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }

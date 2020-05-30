@@ -92,22 +92,56 @@ namespace sellTrainTickets.Models
 			return isSuperAdmin;
 		}
 		
-		public void addAdmin(string email)
+		public bool addAdmin(string email)
 		{
-			string sql = $"UPDATE public.\"USER\" SET \"IS_ADMIN\" = TRUE WHERE \"EMAIL\" = '{email}';";
+			List<User> users = new List<User>();
+			string sql = $"SELECT * FROM public.\"USER\" WHERE \"EMAIL\" = '{email}'";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
-				cmd.ExecuteNonQuery();
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						users.Add(new User(reader.GetString(1), reader.GetString(0),
+								reader.GetString(2), reader.GetBoolean(3), reader.GetBoolean(4)));
+					}
+				}
 			}
+			if (users.Count == 1)
+			{
+				sql = $"UPDATE public.\"USER\" SET \"IS_ADMIN\" = TRUE WHERE \"EMAIL\" = '{email}';";
+				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+				{
+					cmd.ExecuteNonQuery();
+				}
+				return true;
+			}
+			return false;
 		}
 
 		public void deleteAdmin(string email)
 		{
-			string sql = $"UPDATE public.\"USER\" SET \"IS_ADMIN\" = FALSE WHERE \"EMAIL\" = '{email}';";
+			List<User> users = new List<User>();
+			string sql = $"SELECT * FROM public.\"USER\" WHERE \"EMAIL\" = '{email}'";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
-				cmd.ExecuteNonQuery();
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						users.Add(new User(reader.GetString(1), reader.GetString(0),
+								reader.GetString(2), reader.GetBoolean(3), reader.GetBoolean(4)));
+					}
+				}
 			}
+			if(users.Count == 1)
+			{
+				sql = $"UPDATE public.\"USER\" SET \"IS_ADMIN\" = FALSE WHERE \"EMAIL\" = '{email}';";
+				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+				{
+					cmd.ExecuteNonQuery();
+				}
+			}	
 		}
 
 		public void addRace(int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
@@ -121,10 +155,25 @@ namespace sellTrainTickets.Models
 
 		public void deleteRace(int id)
 		{
-			string sql = $"DELETE FROM public.\"RACE\" WHERE \"ID\" = '{id}';";
+			List<int> races = new List<int>();
+			string sql = $"SELECT \"ID\" FROM public.\"RACE\" WHERE \"ID\" = {id}";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
-				cmd.ExecuteNonQuery();
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						races.Add(reader.GetInt32(0));
+					}
+				}
+			}
+			if (races.Count == 1)
+			{
+				sql = $"DELETE FROM public.\"RACE\" WHERE \"ID\" = '{id}';";
+				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+				{
+					cmd.ExecuteNonQuery();
+				}
 			}
 		}
 
@@ -338,17 +387,33 @@ namespace sellTrainTickets.Models
 					}
 				}
 			}
-			for (int i = 1; i < 31; i++)
+			List<RaceInfo> raceInfo = new List<RaceInfo>();
+			sql = $"SELECT * FROM public.\"SCHEDULE\";";
+			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
-				for (int j = 0; j < id.Count; j++)
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
 				{
-					sql = $"INSERT INTO public.\"SCHEDULE\" VALUES ('{id[j]}', '{num_of_seats[j]}', '{DateTime.Today.AddDays(i).ToString("d")}');";
-					using (var cmd2 = new NpgsqlCommand(sql, DBSource.getConnection()))
+					while (reader.Read())
 					{
-						cmd2.ExecuteNonQuery();
+						raceInfo.Add(new RaceInfo(reader.GetInt32(0), reader.GetInt32(1), Convert.ToDateTime(reader.GetString(2))));
 					}
 				}
 			}
+			if(raceInfo.Count == 0)
+			{
+				for (int i = 1; i < 31; i++)
+				{
+					for (int j = 0; j < id.Count; j++)
+					{
+						sql = $"INSERT INTO public.\"SCHEDULE\" VALUES ('{id[j]}', '{num_of_seats[j]}', '{DateTime.Today.AddDays(i).ToString("d")}');";
+						using (var cmd2 = new NpgsqlCommand(sql, DBSource.getConnection()))
+						{
+							cmd2.ExecuteNonQuery();
+						}
+					}
+				}
+			}
+			
 		}
 
 	}

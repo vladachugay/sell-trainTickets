@@ -13,6 +13,9 @@ namespace sellTrainTickets.Views
 {
     public partial class AddRaceForm : Form
     {
+        //Координаты мышки
+        private int x = 0;
+        private int y = 0;
         public AddRaceForm()
         {
             InitializeComponent();
@@ -52,16 +55,9 @@ namespace sellTrainTickets.Views
 
         private void addRButton_Click(object sender, EventArgs e)
         {
-            int id;
-            if(!Int32.TryParse(IDTextBox.Text, out id))
-            {
-                //MessageBox.Show()
-            }
-
             string stations = "";
             string arrivalTime = "";
             string departureTime = "";
-            Console.WriteLine(addRaceDataGrid.Rows.Count);
             for (int i = 0; i < addRaceDataGrid.Rows.Count-1; i++)
             {
                 if (i != addRaceDataGrid.Rows.Count - 2)
@@ -82,7 +78,7 @@ namespace sellTrainTickets.Views
             Console.WriteLine(departureTime);
             string name = addRaceDataGrid.Rows[0].Cells["Зупинка"].Value.ToString() + " - " +
                 addRaceDataGrid.Rows[addRaceDataGrid.Rows.Count - 2].Cells["Зупинка"].Value.ToString();
-            Controller.clickOnAddRaceButton(this, id, name, stations, arrivalTime, departureTime, 
+            Controller.clickOnAddRaceButton(this, Int32.Parse(IDTextBox.Text), name, stations, arrivalTime, departureTime, 
                 Int32.Parse(seatsTextBox.Text), Int32.Parse(priceTextBox.Text));
         }
 
@@ -109,6 +105,20 @@ namespace sellTrainTickets.Views
         private void deleteAdminButton_Click(object sender, EventArgs e)
         {
             Controller.clickOnDeleteAdminOption(this);
+        }
+
+        private void AddRaceForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void AddRaceForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }

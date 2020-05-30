@@ -291,6 +291,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddRaceForm";
             this.Text = "AddRaceForm";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddRaceForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AddRaceForm_MouseMove);
             this.menuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.addRaceDataGrid)).EndInit();
             this.ResumeLayout(false);

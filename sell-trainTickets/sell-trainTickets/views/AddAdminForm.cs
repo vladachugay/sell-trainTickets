@@ -13,6 +13,9 @@ namespace sellTrainTickets.Views
 {
     public partial class AddAdminForm : Form
     {
+        //Координаты мышки
+        private int x = 0;
+        private int y = 0;
         public AddAdminForm()
         {
             InitializeComponent();
@@ -62,6 +65,20 @@ namespace sellTrainTickets.Views
         private void addAButton_Click(object sender, EventArgs e)
         {
             Controller.clickOnAddAdminButton(emailField.Text);
+        }
+
+        private void AddAdminForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void AddAdminForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }

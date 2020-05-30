@@ -210,6 +210,8 @@
             this.Name = "AvailableRacesForm";
             this.Text = "AvailableRacesForm";
             this.Load += new System.EventHandler(this.AvailableRacesForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AvailableRacesForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AvailableRacesForm_MouseMove);
             this.menuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.availableRacesGrid)).EndInit();
             this.ResumeLayout(false);

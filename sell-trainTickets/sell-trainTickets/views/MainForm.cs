@@ -13,6 +13,9 @@ namespace sellTrainTickets.Views
 {
     public partial class MainForm : Form
     {
+        //Координаты мышки
+        private int x = 0; 
+        private int y = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -101,6 +104,20 @@ namespace sellTrainTickets.Views
         public void showNoResultError()
         {
             this.noResultErrorLabel.Visible = true;
+        }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }

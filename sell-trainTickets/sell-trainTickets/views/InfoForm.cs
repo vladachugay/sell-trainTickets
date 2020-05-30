@@ -13,6 +13,7 @@ namespace sellTrainTickets.Views
 {
     public partial class InfoForm : Form
     {
+        private int x = 0; private int y = 0;
         DataSet dataSet;
         DataTable usersTicketsTable;
         public InfoForm()
@@ -101,6 +102,20 @@ namespace sellTrainTickets.Views
         private void exitButton_Click(object sender, EventArgs e)
         {
             Controller.clickOnExitButton(this);
+        }
+
+        private void InfoForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void InfoForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }

@@ -58,7 +58,7 @@
             this.label1.Location = new System.Drawing.Point(163, 98);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 21);
+            this.label1.Size = new System.Drawing.Size(0, 28);
             this.label1.TabIndex = 0;
             // 
             // label2
@@ -67,7 +67,7 @@
             this.label2.Location = new System.Drawing.Point(163, 211);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 21);
+            this.label2.Size = new System.Drawing.Size(0, 28);
             this.label2.TabIndex = 1;
             // 
             // menuPanel
@@ -177,7 +177,7 @@
             this.CloseButton.Location = new System.Drawing.Point(748, 6);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(18, 17);
+            this.CloseButton.Size = new System.Drawing.Size(21, 20);
             this.CloseButton.TabIndex = 4;
             this.CloseButton.Text = "X";
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
@@ -189,7 +189,7 @@
             this.FROMField.Font = new System.Drawing.Font("Yu Gothic UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FROMField.Location = new System.Drawing.Point(394, 98);
             this.FROMField.Name = "FROMField";
-            this.FROMField.Size = new System.Drawing.Size(215, 33);
+            this.FROMField.Size = new System.Drawing.Size(215, 39);
             this.FROMField.TabIndex = 5;
             // 
             // TOField
@@ -198,7 +198,7 @@
             this.TOField.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TOField.Location = new System.Drawing.Point(394, 165);
             this.TOField.Name = "TOField";
-            this.TOField.Size = new System.Drawing.Size(215, 33);
+            this.TOField.Size = new System.Drawing.Size(215, 39);
             this.TOField.TabIndex = 6;
             // 
             // fromLabel
@@ -208,7 +208,7 @@
             this.fromLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
             this.fromLabel.Location = new System.Drawing.Point(318, 101);
             this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(70, 25);
+            this.fromLabel.Size = new System.Drawing.Size(88, 32);
             this.fromLabel.TabIndex = 7;
             this.fromLabel.Text = "Звідки:";
             // 
@@ -219,7 +219,7 @@
             this.toLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
             this.toLabel.Location = new System.Drawing.Point(331, 168);
             this.toLabel.Name = "toLabel";
-            this.toLabel.Size = new System.Drawing.Size(57, 25);
+            this.toLabel.Size = new System.Drawing.Size(71, 32);
             this.toLabel.TabIndex = 8;
             this.toLabel.Text = "Куди:";
             // 
@@ -233,7 +233,7 @@
             this.dateTimePicker.Location = new System.Drawing.Point(394, 239);
             this.dateTimePicker.MinDate = new System.DateTime(2020, 5, 20, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(215, 33);
+            this.dateTimePicker.Size = new System.Drawing.Size(215, 39);
             this.dateTimePicker.TabIndex = 9;
             // 
             // label3
@@ -243,7 +243,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(77)))), ((int)(((byte)(156)))));
             this.label3.Location = new System.Drawing.Point(332, 245);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 25);
+            this.label3.Size = new System.Drawing.Size(69, 32);
             this.label3.TabIndex = 10;
             this.label3.Text = "Дата:";
             // 
@@ -302,7 +302,7 @@
             this.noResultErrorLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.noResultErrorLabel.Location = new System.Drawing.Point(307, 404);
             this.noResultErrorLabel.Name = "noResultErrorLabel";
-            this.noResultErrorLabel.Size = new System.Drawing.Size(345, 21);
+            this.noResultErrorLabel.Size = new System.Drawing.Size(425, 28);
             this.noResultErrorLabel.TabIndex = 14;
             this.noResultErrorLabel.Text = "На задану дату немає ресів з таким напрямком";
             this.noResultErrorLabel.Visible = false;
@@ -332,6 +332,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.menuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

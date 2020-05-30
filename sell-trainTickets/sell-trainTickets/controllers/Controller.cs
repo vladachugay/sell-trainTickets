@@ -211,16 +211,29 @@ namespace sellTrainTickets.Controllers
 
         public static void clickOnAddRaceButton(Form form, int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
         {
-            try
+            while(true)
             {
-
-               dataService.addRace(id, name, stations, arrivalTime, departureTime, numOfSeats, price);
-                view.toMainForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
+                try
+                {
+                    dataService.addRace(id, name, stations, arrivalTime, departureTime, numOfSeats, price);
+                    view.toMainForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
+                    break;
+                }
+                catch (System.FormatException e)
+                {
+                    MessageBox.Show("Помилка формату введення! ID, кількість місць та ціна - цілі натуральні числа. Перевірте введену інформацію.",
+                        "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine(e.ToString());
+                    continue;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine(e.ToString());
+                    continue;
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            
         }
 
         public static void clickOnDeleteRaceOption(Form form)
@@ -263,7 +276,15 @@ namespace sellTrainTickets.Controllers
         {
             try
             {
-                dataService.addAdmin(email);
+                bool isSuccessful = dataService.addAdmin(email);
+                if(isSuccessful)
+                {
+                    MessageBox.Show("Адміністратор був успішно добавлений.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Помилка при додаванні адміністра. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception e)
             {

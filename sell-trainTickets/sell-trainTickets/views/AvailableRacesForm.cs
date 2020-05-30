@@ -13,6 +13,8 @@ namespace sellTrainTickets.Views
 {
     public partial class AvailableRacesForm : Form
     {
+        private int x = 0; 
+        private int y = 0;
         DataSet dataSet;
         DataTable availableRacesTable;
         public AvailableRacesForm()
@@ -96,6 +98,20 @@ namespace sellTrainTickets.Views
             Controller.clickOnRace(Int32.Parse(availableRacesGrid.CurrentRow.Cells[0].Value.ToString()), 
                 Convert.ToDateTime(availableRacesGrid.CurrentRow.Cells[4].Value.ToString()),
                columnNames[2].Split(' ')[4], columnNames[3].Split(' ')[4], this);
+        }
+
+        private void AvailableRacesForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            x = e.X; y = e.Y;
+        }
+
+        private void AvailableRacesForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.Location = new System.Drawing.Point(this.Location.X + (e.X - x), this.Location.Y + (e.Y - y));
+
+            }
         }
     }
 }
