@@ -116,10 +116,10 @@ namespace sellTrainTickets.Models
 				}
 				return true;
 			}
-			return false;
+			else return false;
 		}
 
-		public void deleteAdmin(string email)
+		public bool deleteAdmin(string email)
 		{
 			List<User> users = new List<User>();
 			string sql = $"SELECT * FROM public.\"USER\" WHERE \"EMAIL\" = '{email}'";
@@ -134,26 +134,45 @@ namespace sellTrainTickets.Models
 					}
 				}
 			}
-			if(users.Count == 1)
+			if (users.Count == 1)
 			{
 				sql = $"UPDATE public.\"USER\" SET \"IS_ADMIN\" = FALSE WHERE \"EMAIL\" = '{email}';";
 				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 				{
 					cmd.ExecuteNonQuery();
 				}
-			}	
+				return true;
+			}
+			else return false;
 		}
 
-		public void addRace(int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
+		public bool addRace(int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
 		{
-			string sql = $"INSERT INTO public.\"RACE\" VALUES ('{id}', '{name}', '{stations}', '{arrivalTime}', '{departureTime}', '{numOfSeats}', '{price}');";
+			List<int> races = new List<int>();
+			string sql = $"SELECT \"ID\" FROM public.\"RACE\" WHERE \"ID\" = {id}";
 			using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
 			{
-				cmd.ExecuteNonQuery();
+				using (NpgsqlDataReader reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						races.Add(reader.GetInt32(0));
+					}
+				}
 			}
+			if (races.Count == 0)
+			{
+				sql = $"INSERT INTO public.\"RACE\" VALUES ('{id}', '{name}', '{stations}', '{arrivalTime}', '{departureTime}', '{numOfSeats}', '{price}');";
+				using (var cmd = new NpgsqlCommand(sql, DBSource.getConnection()))
+				{
+					cmd.ExecuteNonQuery();
+				}
+				return true;
+			}
+			else return false;
 		}
 
-		public void deleteRace(int id)
+		public bool deleteRace(int id)
 		{
 			List<int> races = new List<int>();
 			string sql = $"SELECT \"ID\" FROM public.\"RACE\" WHERE \"ID\" = {id}";
@@ -174,7 +193,9 @@ namespace sellTrainTickets.Models
 				{
 					cmd.ExecuteNonQuery();
 				}
+				return true;
 			}
+			else return false;
 		}
 
 		public void returnTicket(int id)

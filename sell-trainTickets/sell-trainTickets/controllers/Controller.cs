@@ -209,31 +209,23 @@ namespace sellTrainTickets.Controllers
             }
         }
 
-        public static void clickOnAddRaceButton(Form form, int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
+        public static void clickOnAddRaceButton(AddRaceForm addRaceForm, int id, string name, string stations, string arrivalTime, string departureTime, int numOfSeats, int price)
         {
-            while(true)
+            try
             {
-                try
+                bool issuccessful = dataService.addRace(id, name, stations, arrivalTime, departureTime, numOfSeats, price);
+                if (issuccessful)
                 {
-                    dataService.addRace(id, name, stations, arrivalTime, departureTime, numOfSeats, price);
-                    view.toMainForm(form, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
-                    break;
+                    MessageBox.Show("Рейс був успішно добавлений.", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    view.toAddRaceForm(addRaceForm, dataService.isAdmin(getMAC()), dataService.isSuperAdmin(getMAC()));
                 }
-                catch (System.FormatException e)
-                {
-                    MessageBox.Show("Помилка формату введення! ID, кількість місць та ціна - цілі натуральні числа. Перевірте введену інформацію.",
-                        "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine(e.ToString());
-                    continue;
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine(e.ToString());
-                    continue;
-                }
+                else MessageBox.Show("ID повинен бути унікальним. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(e.ToString());
+            }    
         }
 
         public static void clickOnDeleteRaceOption(Form form)
@@ -252,7 +244,12 @@ namespace sellTrainTickets.Controllers
         {
             try
             {
-                dataService.deleteRace(id);
+                bool issuccessful = dataService.deleteRace(id);
+                if(issuccessful)
+                {
+                    MessageBox.Show("Рейс був успішно видалений.", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else MessageBox.Show("Помилка при видаленні рейсу. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception e)
             {
@@ -281,10 +278,7 @@ namespace sellTrainTickets.Controllers
                 {
                     MessageBox.Show("Адміністратор був успішно добавлений.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
-                {
-                    MessageBox.Show("Помилка при додаванні адміністра. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                else MessageBox.Show("Помилка при додаванні адміністратора. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception e)
             {
@@ -308,7 +302,12 @@ namespace sellTrainTickets.Controllers
         {
             try
             {
-                dataService.deleteAdmin(email);
+                bool isSuccessful = dataService.deleteAdmin(email);
+                if (isSuccessful)
+                {
+                    MessageBox.Show("Адміністратор був успішно видалений.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else MessageBox.Show("Помилка при видаленні адміністратора. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception e)
             {

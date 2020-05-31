@@ -29,8 +29,8 @@ namespace sellTrainTickets.Views
             dataSet.Tables.Add(raceTable);
 
             DataColumn station = new DataColumn("Зупинка");
-            DataColumn arrivalTime = new DataColumn("Час прибуття");
-            DataColumn departureTime = new DataColumn("Час відправлення");
+            DataColumn arrivalTime = new DataColumn("Час прибуття (hh:mm)");
+            DataColumn departureTime = new DataColumn("Час відправлення (hh:mm)");
             raceTable.Columns.Add(station);
             raceTable.Columns.Add(arrivalTime);
             raceTable.Columns.Add(departureTime);
@@ -55,27 +55,50 @@ namespace sellTrainTickets.Views
 
         private void addRButton_Click(object sender, EventArgs e)
         {
+            int num_of_seats;
+            int price;
+            if(!Int32.TryParse(this.seatsTextBox.Text, out num_of_seats) || num_of_seats < 10)  
+            {
+                MessageBox.Show("Кількість місць повинна бути натуральним числом і більшою за 10. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if(!Int32.TryParse(this.priceTextBox.Text, out price) || price < 1)
+            {
+                MessageBox.Show("Ціна повинна бути натуральним числом і більшою за 0. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string stations = "";
             string arrivalTime = "";
             string departureTime = "";
+            if(addRaceDataGrid.Rows.Count == 1)
+            {
+                MessageBox.Show("Таблиця повинна бути повністю заповненою. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             for (int i = 0; i < addRaceDataGrid.Rows.Count-1; i++)
             {
-                if (i != addRaceDataGrid.Rows.Count - 2)
+                if (addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString() == "" || addRaceDataGrid.Rows[i].Cells["Час прибуття (hh:mm)"].Value.ToString() == "" 
+                    || addRaceDataGrid.Rows[i].Cells["Час відправлення (hh:mm)"].Value.ToString() == "")
                 {
-                    stations += $"{addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString()};";
-                    arrivalTime += $"{addRaceDataGrid.Rows[i].Cells["Час прибуття"].Value.ToString()};";
-                    departureTime += $"{addRaceDataGrid.Rows[i].Cells["Час відправлення"].Value.ToString()};";
+                    MessageBox.Show("Таблиця повинна бути повністю заповненою. Перевірте введені дані.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else
                 {
-                    stations += addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString();
-                    arrivalTime += addRaceDataGrid.Rows[i].Cells["Час прибуття"].Value.ToString();
-                    departureTime += addRaceDataGrid.Rows[i].Cells["Час відправлення"].Value.ToString();
-                }   
+                    if (i != addRaceDataGrid.Rows.Count - 2)
+                    {
+                        stations += $"{addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString()};";
+                        arrivalTime += $"{addRaceDataGrid.Rows[i].Cells["Час прибуття (hh:mm)"].Value.ToString()};";
+                        departureTime += $"{addRaceDataGrid.Rows[i].Cells["Час відправлення (hh:mm)"].Value.ToString()};";
+                    }
+                    else
+                    {
+                        stations += addRaceDataGrid.Rows[i].Cells["Зупинка"].Value.ToString();
+                        arrivalTime += addRaceDataGrid.Rows[i].Cells["Час прибуття (hh:mm)"].Value.ToString();
+                        departureTime += addRaceDataGrid.Rows[i].Cells["Час відправлення (hh:mm)"].Value.ToString();
+                    }
+                }       
             }
-            Console.WriteLine(stations);
-            Console.WriteLine(arrivalTime);
-            Console.WriteLine(departureTime);
             string name = addRaceDataGrid.Rows[0].Cells["Зупинка"].Value.ToString() + " - " +
                 addRaceDataGrid.Rows[addRaceDataGrid.Rows.Count - 2].Cells["Зупинка"].Value.ToString();
             Controller.clickOnAddRaceButton(this, Int32.Parse(IDTextBox.Text), name, stations, arrivalTime, departureTime, 
